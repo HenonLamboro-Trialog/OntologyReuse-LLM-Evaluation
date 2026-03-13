@@ -164,7 +164,7 @@ def run_batch(reference, generated_folder):
 
     df = pd.DataFrame(rows)
 
-    df.to_csv("results/reuse_scores.csv", index=False)
+    df.to_csv("Results/reuse_scores.csv", index=False)
 
     print(df)
 
@@ -172,6 +172,6 @@ def run_batch(reference, generated_folder):
 if __name__ == "__main__":
 
     run_batch(
-        "data/reference/fiesta.owl",
-        "data/generated2/"
+        "data/pathtoreferenceontology/",
+        "data/pathtogeneratedontology/"
     )
