@@ -1,0 +1,100 @@
+# Certainly! Below is an example of an ontology in Turtle (TTL) format for the IoT testbed domain. This ontology includes concepts such as `Testbed`, `Device`, `Application`, `Sensor`, `Observation`, and `DataFormat`. It also includes relationships between these concepts.
+
+# ```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix iot: <http://www.example.org/iot#> .
+
+# Define the ontology namespace
+iot:ontology a owl:Ontology ;
+    rdfs:label "IoT Testbed Ontology" .
+
+# Define classes
+iot:Testbed a owl:Class ;
+    rdfs:label "Testbed" ;
+    rdfs:comment "A physical or virtual environment where IoT devices and applications are tested." .
+
+iot:Device a owl:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "An IoT device that can interact with sensors and store observations." .
+
+iot:Application a owl:Class ;
+    rdfs:label "Application" ;
+    rdfs:comment "An application that interacts with devices and sensors to process or store data." .
+
+iot:Sensor a owl:Class ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that measures or detects physical or environmental conditions." .
+
+iot:Observation a owl:Class ;
+    rdfs:label "Observation" ;
+    rdfs:comment "A measurement or detection result from a sensor." .
+
+iot:DataFormat a owl:Class ;
+    rdfs:label "DataFormat" ;
+    rdfs:comment "A format in which data is stored or transmitted." .
+
+# Define object properties
+iot:owns a owl:ObjectProperty ;
+    rdfs:label "owns" ;
+    rdfs:domain iot:Testbed ;
+    rdfs:range iot:Device .
+
+iot:runs a owl:ObjectProperty ;
+    rdfs:label "runs" ;
+    rdfs:domain iot:Testbed ;
+    rdfs:range iot:Application .
+
+iot:interactsWith a owl:ObjectProperty ;
+    rdfs:label "interactsWith" ;
+    rdfs:domain iot:Device ;
+    rdfs:range iot:Sensor .
+
+iot:stores a owl:ObjectProperty ;
+    rdfs:label "stores" ;
+    rdfs:domain iot:Application ;
+    rdfs:range iot:Observation .
+
+iot:usesDataFormat a owl:ObjectProperty ;
+    rdfs:label "usesDataFormat" ;
+    rdfs:domain iot:Application ;
+    rdfs:range iot:DataFormat .
+
+# Define individuals
+iot:Testbed1 a iot:Testbed ;
+    rdfs:label "Testbed 1" ;
+    iot:owns iot:Device1 ;
+    iot:runs iot:App1 .
+
+iot:Device1 a iot:Device ;
+    rdfs:label "Device 1" ;
+    iot:interactsWith iot:Sensor1 .
+
+iot:App1 a iot:Application ;
+    rdfs:label "Application 1" ;
+    iot:stores iot:Obs1 ;
+    iot:usesDataFormat iot:DataFormat1 .
+
+iot:Sensor1 a iot:Sensor ;
+    rdfs:label "Sensor 1" .
+
+iot:Obs1 a iot:Observation ;
+    rdfs:label "Observation 1" .
+
+iot:DataFormat1 a iot:DataFormat ;
+    rdfs:label "Data Format 1" .
+# ```
+
+# ### Explanation:
+# - **Classes**: `Testbed`, `Device`, `Application`, `Sensor`, `Observation`, and `DataFormat` represent the main concepts in the IoT testbed domain.
+# - **Object Properties**: 
+#   - `owns`: Indicates that a testbed owns a device.
+#   - `runs`: Indicates that a testbed runs an application.
+#   - `interactsWith`: Indicates that a device interacts with a sensor.
+#   - `stores`: Indicates that an application stores an observation.
+#   - `usesDataFormat`: Indicates that an application uses a specific data format.
+# - **Individuals**: Examples of testbeds, devices, applications, sensors, observations, and data formats are provided to illustrate how the ontology can be instantiated.
+
+# This ontology can be extended further based on specific requirements or additional concepts in the IoT testbed domain.

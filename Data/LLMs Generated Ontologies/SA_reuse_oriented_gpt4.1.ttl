@@ -1,0 +1,157 @@
+# Certainly! Below is a sample ontology in Turtle (.ttl) format for a **smart-appliance** in the **energy domain**, reusing as much as possible from the [SAREF ontology](https://saref.etsi.org/).  
+# **SAREF labels and classes are clearly indicated with comments.**  
+# This ontology defines a SmartAppliance, its relation to energy consumption, and its connection to devices, services, and measurements.
+
+# ```ttl
+@prefix : <http://example.org/smart-appliance#> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+#################################################################
+# Ontology Metadata
+#################################################################
+
+<http://example.org/smart-appliance>
+    a owl:Ontology ;
+    rdfs:label "Smart Appliance Ontology for Energy Domain" ;
+    rdfs:comment "An ontology for representing smart appliances in the energy domain, reusing SAREF concepts where possible." .
+
+#################################################################
+# Classes
+#################################################################
+
+### SAREF:Device reused
+saref:Device a owl:Class .
+# SAREF label: Device
+
+### SAREF:Appliance reused
+saref:Appliance a owl:Class .
+# SAREF label: Appliance
+
+### SmartAppliance (subclass of saref:Appliance)
+:SmartAppliance a owl:Class ;
+    rdfs:subClassOf saref:Appliance ;
+    rdfs:label "Smart Appliance" ;
+    rdfs:comment "A smart appliance capable of communication and control, extending SAREF Appliance." .
+
+### SAREF:Service reused
+saref:Service a owl:Class .
+# SAREF label: Service
+
+### SAREF:Measurement reused
+saref:Measurement a owl:Class .
+# SAREF label: Measurement
+
+### SAREF:Property reused
+saref:Property a owl:Class .
+# SAREF label: Property
+
+### SAREF:Energy reused
+saref:Energy a owl:Class .
+# SAREF label: Energy
+
+### SAREF:Power reused
+saref:Power a owl:Class .
+# SAREF label: Power
+
+#################################################################
+# Object Properties
+#################################################################
+
+### SAREF:consistsOf reused
+saref:consistsOf a owl:ObjectProperty .
+# SAREF label: consistsOf
+
+### SAREF:offers reused
+saref:offers a owl:ObjectProperty .
+# SAREF label: offers
+
+### SAREF:measuresProperty reused
+saref:measuresProperty a owl:ObjectProperty .
+# SAREF label: measuresProperty
+
+### SAREF:hasMeasurement reused
+saref:hasMeasurement a owl:ObjectProperty .
+# SAREF label: hasMeasurement
+
+### SAREF:hasFunction reused
+saref:hasFunction a owl:ObjectProperty .
+# SAREF label: hasFunction
+
+### isControlledBy (new property)
+:isControlledBy a owl:ObjectProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range saref:Device ;
+    rdfs:label "is controlled by" ;
+    rdfs:comment "Indicates the device (e.g., a controller or gateway) that controls the smart appliance." .
+
+#################################################################
+# Data Properties
+#################################################################
+
+### SAREF:hasManufacturer reused
+saref:hasManufacturer a owl:DatatypeProperty .
+# SAREF label: hasManufacturer
+
+### SAREF:hasModel reused
+saref:hasModel a owl:DatatypeProperty .
+# SAREF label: hasModel
+
+### SAREF:hasSerialNumber reused
+saref:hasSerialNumber a owl:DatatypeProperty .
+# SAREF label: hasSerialNumber
+
+### hasFirmwareVersion (new property)
+:hasFirmwareVersion a owl:DatatypeProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range xsd:string ;
+    rdfs:label "has firmware version" ;
+    rdfs:comment "Firmware version of the smart appliance." .
+
+#################################################################
+# Individuals (Example)
+#################################################################
+
+:SmartWashingMachine1 a :SmartAppliance ;
+    rdfs:label "Smart Washing Machine" ;
+    saref:hasManufacturer "ExampleCorp" ;
+    saref:hasModel "X1000" ;
+    saref:hasSerialNumber "SN123456789" ;
+    :hasFirmwareVersion "v2.3.1" ;
+    saref:offers :WashingService ;
+    saref:measuresProperty saref:Energy, saref:Power ;
+    saref:hasMeasurement :Measurement1 .
+
+:WashingService a saref:Service ;
+    rdfs:label "Washing Service" .
+
+:Measurement1 a saref:Measurement ;
+    rdfs:label "Energy Measurement" ;
+    saref:measuresProperty saref:Energy ;
+    saref:hasValue "1.5"^^xsd:float ;
+    saref:hasUnitOfMeasure "kWh" .
+
+#################################################################
+# Example of Energy Property (SAREF reused)
+#################################################################
+
+saref:Energy a owl:Class ;
+    rdfs:label "Energy" .
+
+saref:Power a owl:Class ;
+    rdfs:label "Power" .
+
+#################################################################
+# End of Ontology
+#################################################################
+# ```
+
+# **Notes:**
+# - All SAREF classes and properties are reused with their original labels, as indicated by comments.
+# - New concepts (e.g., `SmartAppliance`, `hasFirmwareVersion`, `isControlledBy`) are introduced only where SAREF does not provide a direct equivalent.
+# - Example individuals are provided to illustrate usage.
+# - You can extend this ontology with more appliance types, services, and measurements as needed.
+
+# Let me know if you need further customization or more detailed examples!

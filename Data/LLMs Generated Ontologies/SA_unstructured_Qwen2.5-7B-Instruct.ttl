@@ -1,0 +1,81 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix energy: <http://example.org/ontology/energy#> .
+
+# Define ontology
+energy:MyOntology a owl:Ontology ;
+    energy:ontologyVersion "1.0"^^xsd:string .
+
+# Define classes
+energy:Appliance a owl:Class ;
+    rdfs:label "Appliance" ;
+    rdfs:comment "A general class for all types of appliances." .
+
+energy:SmartAppliance a owl:Class ;
+    rdfs:subClassOf energy:Appliance ;
+    rdfs:label "Smart Appliance" ;
+    rdfs:comment "A subclass of Appliance that is connected to a network and can be controlled remotely." .
+
+energy:EnergyDevice a owl:Class ;
+    rdfs:subClassOf energy:Appliance ;
+    rdfs:label "Energy Device" ;
+    rdfs:comment "A subclass of Appliance that is specifically designed to manage energy consumption." .
+
+# Define properties
+energy:hasEnergyConsumption a rdf:Property ;
+    rdfs:domain energy:Appliance ;
+    rdfs:range xsd:float ;
+    rdfs:label "Energy Consumption" ;
+    rdfs:comment "The amount of energy consumed by the appliance in kilowatt-hours (kWh)." .
+
+energy:isConnectedTo a rdf:Property ;
+    rdfs:domain energy:SmartAppliance ;
+    rdfs:range energy:Network ;
+    rdfs:label "Is Connected To" ;
+    rdfs:comment "Indicates the network to which the smart appliance is connected." .
+
+energy:hasEnergyEfficiency a rdf:Property ;
+    rdfs:domain energy:EnergyDevice ;
+    rdfs:range xsd:float ;
+    rdfs:label "Energy Efficiency" ;
+    rdfs:comment "The efficiency of the energy device in converting energy into useful output." .
+
+# Define instances
+energy:Refrigerator a energy:Appliance ;
+    energy:hasEnergyConsumption "100"^^xsd:float .
+
+energy:SmartRefrigerator a energy:SmartAppliance ;
+    energy:hasEnergyConsumption "80"^^xsd:float ;
+    energy:isConnectedTo <http://example.org/network1> .
+
+energy:Heater a energy:EnergyDevice ;
+    energy:hasEnergyConsumption "500"^^xsd:float ;
+    energy:hasEnergyEfficiency "0.9"^^xsd:float .
+
+# Define relationships
+energy:Appliance energy:hasEnergyConsumption "100"^^xsd:float .
+energy:SmartAppliance energy:isConnectedTo <http://example.org/network1> .
+energy:EnergyDevice energy:hasEnergyEfficiency "0.9"^^xsd:float .
+
+# ```
+
+# ### Explanation:
+# 1. **Ontology Namespace**: The `energy:` prefix is used to define the ontology namespace.
+# 2. **Classes**:
+#    - `energy:Appliance`: A general class for all types of appliances.
+#    - `energy:SmartAppliance`: A subclass of `Appliance` that is connected to a network.
+#    - `energy:EnergyDevice`: A subclass of `Appliance` that is specifically designed to manage energy consumption.
+# 3. **Properties**:
+#    - `energy:hasEnergyConsumption`: A property that defines the energy consumption of an appliance.
+#    - `energy:isConnectedTo`: A property that indicates the network to which a smart appliance is connected.
+#    - `energy:hasEnergyEfficiency`: A property that defines the energy efficiency of an energy device.
+# 4. **Instances**:
+#    - `energy:Refrigerator`: An instance of `Appliance` with a specific energy consumption.
+#    - `energy:SmartRefrigerator`: An instance of `SmartAppliance` with a specific energy consumption and network connection.
+#    - `energy:Heater`: An instance of `EnergyDevice` with specific energy consumption and efficiency.
+# 5. **Relationships**:
+#    - Relationships between instances and properties are defined to show the specific values for each instance.
+
+# This ontology provides a basic structure for representing smart appliances and their properties in the energy domain. You can expand this ontology by adding more classes, properties, and instances as needed.

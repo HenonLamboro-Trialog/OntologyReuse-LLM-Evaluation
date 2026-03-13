@@ -1,0 +1,143 @@
+# Certainly! Below is an example of an ontology in Turtle syntax for the IoT testbed domain, reusing class and property labels from the Fiesta-IoT ontology where possible. This example assumes that the Fiesta-IoT ontology already exists and provides the necessary classes and properties.
+
+# ```turtle
+@prefix fiesta: <http://example.org/fiesta-iot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Reusing classes from Fiesta-IoT
+fiesta:Testbed a owl:Class ;
+    rdfs:label "Testbed" ;
+    rdfs:comment "A physical or virtual environment where IoT devices and systems are deployed for testing and experimentation." .
+
+fiesta:Device a owl:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "An IoT device that can be part of a testbed, capable of collecting or acting on data." .
+
+fiesta:Sensor a owl:Class ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that measures physical or environmental conditions and reports them to a testbed." .
+
+fiesta:Application a owl:Class ;
+    rdfs:label "Application" ;
+    rdfs:comment "A software application that runs on a device or testbed to process or utilize sensor data." .
+
+fiesta:Observation a owl:Class ;
+    rdfs:label "Observation" ;
+    rdfs:comment "A recorded measurement or data point from a sensor or device." .
+
+# New classes for the IoT testbed domain
+fiesta:TestbedDevice a owl:Class ;
+    rdfs:label "TestbedDevice" ;
+    rdfs:comment "A specific device that is part of a testbed." ;
+    rdfs:subClassOf fiesta:Device .
+
+fiesta:TestbedSensor a owl:Class ;
+    rdfs:label "TestbedSensor" ;
+    rdfs:comment "A specific sensor that is part of a testbed." ;
+    rdfs:subClassOf fiesta:Sensor .
+
+fiesta:TestbedApplication a owl:Class ;
+    rdfs:label "TestbedApplication" ;
+    rdfs:comment "A specific application that runs on a testbed." ;
+    rdfs:subClassOf fiesta:Application .
+
+fiesta:TestbedObservation a owl:Class ;
+    rdfs:label "TestbedObservation" ;
+    rdfs:comment "A specific observation that is recorded in a testbed." ;
+    rdfs:subClassOf fiesta:Observation .
+
+# Reusing properties from Fiesta-IoT
+fiesta:isPartOf a owl:ObjectProperty ;
+    rdfs:label "isPartOf" ;
+    rdfs:comment "Indicates that one entity is part of another entity." .
+
+fiesta:hasDevice a owl:ObjectProperty ;
+    rdfs:label "hasDevice" ;
+    rdfs:comment "Indicates that a testbed has a device." .
+
+fiesta:hasSensor a owl:ObjectProperty ;
+    rdfs:label "hasSensor" ;
+    rdfs:comment "Indicates that a testbed has a sensor." .
+
+fiesta:hasApplication a owl:ObjectProperty ;
+    rdfs:label "hasApplication" ;
+    rdfs:comment "Indicates that a testbed has an application." .
+
+fiesta:hasObservation a owl:ObjectProperty ;
+    rdfs:label "hasObservation" ;
+    rdfs:comment "Indicates that a testbed has an observation." .
+
+# New properties for the IoT testbed domain
+fiesta:isTestbedDevice a owl:ObjectProperty ;
+    rdfs:label "isTestbedDevice" ;
+    rdfs:comment "Indicates that a device is part of a specific testbed." ;
+    rdfs:domain fiesta:TestbedDevice ;
+    rdfs:range fiesta:Device .
+
+fiesta:isTestbedSensor a owl:ObjectProperty ;
+    rdfs:label "isTestbedSensor" ;
+    rdfs:comment "Indicates that a sensor is part of a specific testbed." ;
+    rdfs:domain fiesta:TestbedSensor ;
+    rdfs:range fiesta:Sensor .
+
+fiesta:isTestbedApplication a owl:ObjectProperty ;
+    rdfs:label "isTestbedApplication" ;
+    rdfs:comment "Indicates that an application is part of a specific testbed." ;
+    rdfs:domain fiesta:TestbedApplication ;
+    rdfs:range fiesta:Application .
+
+fiesta:isTestbedObservation a owl:ObjectProperty ;
+    rdfs:label "isTestbedObservation" ;
+    rdfs:comment "Indicates that an observation is part of a specific testbed." ;
+    rdfs:domain fiesta:TestbedObservation ;
+    rdfs:range fiesta:Observation .
+
+# Example instances
+fiesta:Testbed1 a fiesta:Testbed ;
+    rdfs:label "Testbed 1" ;
+    fiesta:hasDevice fiesta:Device1 ;
+    fiesta:hasSensor fiesta:Sensor1 ;
+    fiesta:hasApplication fiesta:Application1 ;
+    fiesta:hasObservation fiesta:Observation1 .
+
+fiesta:Device1 a fiesta:Device ;
+    rdfs:label "Device 1" ;
+    fiesta:isPartOf fiesta:Testbed1 .
+
+fiesta:Sensor1 a fiesta:Sensor ;
+    rdfs:label "Sensor 1" ;
+    fiesta:isPartOf fiesta:Testbed1 .
+
+fiesta:Application1 a fiesta:Application ;
+    rdfs:label "Application 1" ;
+    fiesta:isPartOf fiesta:Testbed1 .
+
+fiesta:Observation1 a fiesta:Observation ;
+    rdfs:label "Observation 1" ;
+    fiesta:isPartOf fiesta:Testbed1 .
+
+fiesta:TestbedDevice1 a fiesta:TestbedDevice ;
+    rdfs:label "Testbed Device 1" ;
+    fiesta:isTestbedDevice fiesta:Device1 ;
+    fiesta:isPartOf fiesta:Testbed1 .
+
+fiesta:TestbedSensor1 a fiesta:TestbedSensor ;
+    rdfs:label "Testbed Sensor 1" ;
+    fiesta:isTestbedSensor fiesta:Sensor1 ;
+    fiesta:isPartOf fiesta:Testbed1 .
+
+fiesta:TestbedApplication1 a fiesta:TestbedApplication ;
+    rdfs:label "Testbed Application 1" ;
+    fiesta:isTestbedApplication fiesta:Application1 ;
+    fiesta:isPartOf fiesta:Testbed1 .
+
+fiesta:TestbedObservation1 a fiesta:TestbedObservation ;
+    rdfs:label "Testbed Observation 1" ;
+    fiesta:isTestbedObservation fiesta:Observation1 ;
+    fiesta:isPartOf fiesta:Testbed1 .
+# ```
+
+# This ontology defines the relationships between testbeds, devices, sensors, applications, and observations, reusing as many labels and properties from the Fiesta-IoT ontology as possible.

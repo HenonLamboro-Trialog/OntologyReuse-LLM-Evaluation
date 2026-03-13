@@ -1,0 +1,172 @@
+@prefix : <http://example.org/smart-appliance#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# Classes
+#################################################################
+
+    
+:SmartAppliance rdf:type owl:Class ;
+    rdfs:label "Smart Appliance" ;
+    rdfs:comment "A device capable of communicating and being controlled in a smart energy system." .
+
+:EnergyConsumption rdf:type owl:Class ;
+    rdfs:label "Energy Consumption" ;
+    rdfs:comment "The amount of energy consumed by an appliance." .
+
+:EnergySource rdf:type owl:Class ;
+    rdfs:label "Energy Source" ;
+    rdfs:comment "The source from which energy is supplied to the appliance." .
+
+:User rdf:type owl:Class ;
+    rdfs:label "User" ;
+    rdfs:comment "A person who owns or operates smart appliances." .
+
+:Room rdf:type owl:Class ;
+    rdfs:label "Room" ;
+    rdfs:comment "A physical location where the appliance is installed." .
+
+:OperatingMode rdf:type owl:Class ;
+    rdfs:label "Operating Mode" ;
+    rdfs:comment "The current mode of operation of the appliance (e.g., standby, active, eco)." .
+
+:Schedule rdf:type owl:Class ;
+    rdfs:label "Schedule" ;
+    rdfs:comment "A schedule for operating the appliance." .
+
+:Event rdf:type owl:Class ;
+    rdfs:label "Event" ;
+    rdfs:comment "An event related to appliance operation (e.g., turned on, turned off)." .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:hasEnergyConsumption rdf:type owl:ObjectProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :EnergyConsumption ;
+    rdfs:label "has energy consumption" .
+
+:locatedIn rdf:type owl:ObjectProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :Room ;
+    rdfs:label "located in" .
+
+:controlledBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :User ;
+    rdfs:label "controlled by" .
+
+:poweredBy rdf:type owl:ObjectProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :EnergySource ;
+    rdfs:label "powered by" .
+
+:hasOperatingMode rdf:type owl:ObjectProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :OperatingMode ;
+    rdfs:label "has operating mode" .
+
+:hasSchedule rdf:type owl:ObjectProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :Schedule ;
+    rdfs:label "has schedule" .
+
+:triggersEvent rdf:type owl:ObjectProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :Event ;
+    rdfs:label "triggers event" .
+
+#################################################################
+# Data Properties
+#################################################################
+
+:consumptionValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnergyConsumption ;
+    rdfs:range xsd:float ;
+    rdfs:label "consumption value (kWh)" .
+
+:timestamp rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Event ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "timestamp" .
+
+:modeName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :OperatingMode ;
+    rdfs:range xsd:string ;
+    rdfs:label "mode name" .
+
+:scheduleStart rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Schedule ;
+    rdfs:range xsd:time ;
+    rdfs:label "schedule start time" .
+
+:scheduleEnd rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Schedule ;
+    rdfs:range xsd:time ;
+    rdfs:label "schedule end time" .
+
+:applianceName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range xsd:string ;
+    rdfs:label "appliance name" .
+
+:roomName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Room ;
+    rdfs:range xsd:string ;
+    rdfs:label "room name" .
+
+:sourceType rdf:type owl:DatatypeProperty ;
+    rdfs:domain :EnergySource ;
+    rdfs:range xsd:string ;
+    rdfs:label "source type" .
+
+:userName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :User ;
+    rdfs:range xsd:string ;
+    rdfs:label "user name" .
+
+:eventType rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Event ;
+    rdfs:range xsd:string ;
+    rdfs:label "event type" .
+
+#################################################################
+# Example Individuals
+#################################################################
+
+:WashingMachine rdf:type :SmartAppliance ;
+    :applianceName "Washing Machine" ;
+    :hasEnergyConsumption :WashingMachineConsumption ;
+    :locatedIn :LaundryRoom ;
+    :controlledBy :Alice ;
+    :poweredBy :Grid ;
+    :hasOperatingMode :EcoMode ;
+    :hasSchedule :MorningSchedule ;
+    :triggersEvent :TurnedOnEvent .
+
+:WashingMachineConsumption rdf:type :EnergyConsumption ;
+    :consumptionValue 1.2 .
+
+:LaundryRoom rdf:type :Room ;
+    :roomName "Laundry Room" .
+
+:Alice rdf:type :User ;
+    :userName "Alice" .
+
+:Grid rdf:type :EnergySource ;
+    :sourceType "Electric Grid" .
+
+:EcoMode rdf:type :OperatingMode ;
+    :modeName "Eco" .
+
+:MorningSchedule rdf:type :Schedule ;
+    :scheduleStart "07:00:00"^^xsd:time ;
+    :scheduleEnd "09:00:00"^^xsd:time .
+
+:TurnedOnEvent rdf:type :Event ;
+    :eventType "TurnedOn" ;
+    :timestamp "2024-06-01T07:05:00"^^xsd:dateTime .

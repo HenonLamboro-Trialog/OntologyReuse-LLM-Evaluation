@@ -1,0 +1,151 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://llmtest.org/energy/> .
+
+# Classes
+:SmartApplication a owl:Class ;
+    rdfs:comment "A general class for smart applications." .
+
+:EnergyManagementSystem a owl:Class ;
+    rdfs:comment "A system that manages energy consumption." ;
+    rdfs:subClassOf :SmartApplication .
+
+:SmartMeter a owl:Class ;
+    rdfs:comment "A device that records energy consumption." ;
+    rdfs:subClassOf :SmartApplication .
+
+:EnergyConsumer a owl:Class ;
+    rdfs:comment "An entity that consumes energy." ;
+    rdfs:subClassOf :SmartApplication .
+
+:RenewableEnergySource a owl:Class ;
+    rdfs:comment "A source of energy that is renewable." ;
+    rdfs:subClassOf :EnergyManagementSystem .
+
+:EnergyStorageSystem a owl:Class ;
+    rdfs:comment "A system that stores energy for later use." ;
+    rdfs:subClassOf :EnergyManagementSystem .
+
+:EnergyEfficiency a owl:Class ;
+    rdfs:comment "The goal of using less energy to provide the same service." ;
+    rdfs:subClassOf :SmartApplication .
+
+:SmartGrid a owl:Class ;
+    rdfs:comment "An electricity supply network that uses digital technology." ;
+    rdfs:subClassOf :EnergyManagementSystem .
+
+:EnergyAudit a owl:Class ;
+    rdfs:comment "An assessment of energy use and efficiency." ;
+    rdfs:subClassOf :EnergyManagementSystem .
+
+:EnergyPolicy a owl:Class ;
+    rdfs:comment "A policy aimed at managing energy resources." ;
+    rdfs:subClassOf :SmartApplication .
+
+:Building a owl:Class ;
+    rdfs:comment "A physical structure that consumes energy." ;
+    rdfs:subClassOf :EnergyConsumer .
+
+:ResidentialBuilding a owl:Class ;
+    rdfs:comment "A building designed for residential purposes." ;
+    rdfs:subClassOf :Building .
+
+:CommercialBuilding a owl:Class ;
+    rdfs:comment "A building designed for commercial purposes." ;
+    rdfs:subClassOf :Building .
+
+:IndustrialBuilding a owl:Class ;
+    rdfs:comment "A building designed for industrial purposes." ;
+    rdfs:subClassOf :Building .
+
+:EnergyProvider a owl:Class ;
+    rdfs:comment "An entity that supplies energy." ;
+    rdfs:subClassOf :EnergyConsumer .
+
+:EnergyUsage a owl:Class ;
+    rdfs:comment "The amount of energy consumed by an entity." ;
+    rdfs:subClassOf :EnergyConsumer .
+
+:EnergyMonitoring a owl:Class ;
+    rdfs:comment "The process of tracking energy consumption." ;
+    rdfs:subClassOf :EnergyManagementSystem .
+
+:EnergyEfficiencyRating a owl:Class ;
+    rdfs:comment "A rating that indicates the efficiency of energy use." ;
+    rdfs:subClassOf :EnergyEfficiency .
+
+:SmartAppliance a owl:Class ;
+    rdfs:comment "An appliance that can be controlled remotely." ;
+    rdfs:subClassOf :SmartApplication .
+
+:EnergyForecast a owl:Class ;
+    rdfs:comment "A prediction of future energy consumption." ;
+    rdfs:subClassOf :EnergyManagementSystem .
+
+:EnergyReport a owl:Class ;
+    rdfs:comment "A document detailing energy usage and efficiency." ;
+    rdfs:subClassOf :EnergyAudit .
+
+:EnergySavingMeasure a owl:Class ;
+    rdfs:comment "A measure taken to reduce energy consumption." ;
+    rdfs:subClassOf :EnergyEfficiency .
+
+:EnergyRegulation a owl:Class ;
+    rdfs:comment "Rules governing energy consumption and production." ;
+    rdfs:subClassOf :EnergyPolicy .
+
+# Object Properties
+:hasSmartMeter a owl:ObjectProperty ;
+    rdfs:domain :EnergyConsumer ;
+    rdfs:range :SmartMeter .
+
+:monitors a owl:ObjectProperty ;
+    rdfs:domain :SmartMeter ;
+    rdfs:range :EnergyUsage .
+
+:providesEnergy a owl:ObjectProperty ;
+    rdfs:domain :EnergyProvider ;
+    rdfs:range :EnergyConsumer .
+
+:usesEnergy a owl:ObjectProperty ;
+    rdfs:domain :EnergyConsumer ;
+    rdfs:range :EnergyUsage .
+
+:storesEnergy a owl:ObjectProperty ;
+    rdfs:domain :EnergyStorageSystem ;
+    rdfs:range :Energy .
+
+:hasEnergyEfficiencyRating a owl:ObjectProperty ;
+    rdfs:domain :EnergyConsumer ;
+    rdfs:range :EnergyEfficiencyRating .
+
+:hasEnergyPolicy a owl:ObjectProperty ;
+    rdfs:domain :EnergyManagementSystem ;
+    rdfs:range :EnergyPolicy .
+
+:hasEnergyAudit a owl:ObjectProperty ;
+    rdfs:domain :EnergyManagementSystem ;
+    rdfs:range :EnergyAudit .
+
+# Datatype Properties
+:energyConsumptionValue a owl:DatatypeProperty ;
+    rdfs:domain :EnergyUsage ;
+    rdfs:range xsd:decimal .
+
+:energySourceType a owl:DatatypeProperty ;
+    rdfs:domain :RenewableEnergySource ;
+    rdfs:range xsd:string .
+
+:efficiencyPercentage a owl:DatatypeProperty ;
+    rdfs:domain :EnergyEfficiency ;
+    rdfs:range xsd:decimal .
+
+:reportDate a owl:DatatypeProperty ;
+    rdfs:domain :EnergyReport ;
+    rdfs:range xsd:date .
+
+:forecastedEnergyValue a owl:DatatypeProperty ;
+    rdfs:domain :EnergyForecast ;
+    rdfs:range xsd:decimal .

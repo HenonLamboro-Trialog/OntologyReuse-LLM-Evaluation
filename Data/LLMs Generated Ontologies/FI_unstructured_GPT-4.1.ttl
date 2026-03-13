@@ -1,0 +1,132 @@
+# Certainly! Below is a sample ontology in Turtle (`.ttl`) format for the IoT testbed domain as you described. This ontology covers **Testbed**, **Device**, **Application**, **Sensor**, **Observation**, **DataFormat**, and their relationships.
+
+# ```ttl
+@prefix : <http://example.org/iot-testbed#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:IoTTestbedOntology rdf:type owl:Ontology .
+
+### Classes ###
+:Testbed rdf:type owl:Class ;
+    rdfs:label "Testbed" ;
+    rdfs:comment "A platform or environment for testing IoT devices and applications." .
+
+:Device rdf:type owl:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "A physical or virtual device in the IoT testbed." .
+
+:Application rdf:type owl:Class ;
+    rdfs:label "Application" ;
+    rdfs:comment "An application that interacts with devices or sensors." .
+
+:Sensor rdf:type owl:Class ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A sensor that produces observations." .
+
+:Observation rdf:type owl:Class ;
+    rdfs:label "Observation" ;
+    rdfs:comment "An observation made by a sensor." .
+
+:DataFormat rdf:type owl:Class ;
+    rdfs:label "Data Format" ;
+    rdfs:comment "A proprietary format in which data is stored." .
+
+### Object Properties ###
+:ownsDevice rdf:type owl:ObjectProperty ;
+    rdfs:domain :Testbed ;
+    rdfs:range :Device ;
+    rdfs:label "owns device" ;
+    rdfs:comment "A testbed owns one or more devices." .
+
+:ownsApplication rdf:type owl:ObjectProperty ;
+    rdfs:domain :Testbed ;
+    rdfs:range :Application ;
+    rdfs:label "owns application" ;
+    rdfs:comment "A testbed owns one or more applications." .
+
+:hasSensor rdf:type owl:ObjectProperty ;
+    rdfs:domain :Device ;
+    rdfs:range :Sensor ;
+    rdfs:label "has sensor" ;
+    rdfs:comment "A device has one or more sensors." .
+
+:interactsWithSensor rdf:type owl:ObjectProperty ;
+    rdfs:domain :Application ;
+    rdfs:range :Sensor ;
+    rdfs:label "interacts with sensor" ;
+    rdfs:comment "An application interacts with one or more sensors." .
+
+:producesObservation rdf:type owl:ObjectProperty ;
+    rdfs:domain :Sensor ;
+    rdfs:range :Observation ;
+    rdfs:label "produces observation" ;
+    rdfs:comment "A sensor produces observations." .
+
+:storesObservation rdf:type owl:ObjectProperty ;
+    rdfs:domain :Application ;
+    rdfs:range :Observation ;
+    rdfs:label "stores observation" ;
+    rdfs:comment "An application stores observations." .
+
+:usesDataFormat rdf:type owl:ObjectProperty ;
+    rdfs:domain :Application ;
+    rdfs:range :DataFormat ;
+    rdfs:label "uses data format" ;
+    rdfs:comment "An application uses a proprietary data format." .
+
+:observationFormat rdf:type owl:ObjectProperty ;
+    rdfs:domain :Observation ;
+    rdfs:range :DataFormat ;
+    rdfs:label "observation format" ;
+    rdfs:comment "The data format in which an observation is stored." .
+
+### Data Properties ###
+:observationValue rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Observation ;
+    rdfs:range xsd:string ;
+    rdfs:label "observation value" ;
+    rdfs:comment "The value of the observation." .
+
+:timestamp rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Observation ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "timestamp" ;
+    rdfs:comment "The time at which the observation was made." .
+
+:formatName rdf:type owl:DatatypeProperty ;
+    rdfs:domain :DataFormat ;
+    rdfs:range xsd:string ;
+    rdfs:label "format name" ;
+    rdfs:comment "The name of the data format." .
+
+### Example Individuals (Optional) ###
+:Testbed1 rdf:type :Testbed ;
+    :ownsDevice :Device1 ;
+    :ownsApplication :App1 .
+
+:Device1 rdf:type :Device ;
+    :hasSensor :Sensor1 .
+
+:Sensor1 rdf:type :Sensor ;
+    :producesObservation :Obs1 .
+
+:App1 rdf:type :Application ;
+    :interactsWithSensor :Sensor1 ;
+    :storesObservation :Obs1 ;
+    :usesDataFormat :Format1 .
+
+:Obs1 rdf:type :Observation ;
+    :observationValue "23.5" ;
+    :timestamp "2024-06-01T12:00:00Z"^^xsd:dateTime ;
+    :observationFormat :Format1 .
+
+:Format1 rdf:type :DataFormat ;
+    :formatName "ProprietaryCSV" .
+
+# ```
+
+# **You can expand this ontology with more detailed subclasses or properties as needed.**  
+# Let me know if you want a more specific extension or alignment with existing ontologies (like SSN/SOSA)!

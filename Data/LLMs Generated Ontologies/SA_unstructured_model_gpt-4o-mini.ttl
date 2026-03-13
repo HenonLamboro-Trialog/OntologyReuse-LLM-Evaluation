@@ -1,0 +1,102 @@
+@prefix : <http://example.org/smart-appliance#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Ontology Definition
+<http://example.org/smart-appliance>
+    rdf:type owl:Ontology ;
+    rdfs:label "Smart Appliance Ontology" ;
+    rdfs:comment "An ontology for smart appliances in the energy domain." .
+
+# Classes
+:SmartAppliance rdf:type owl:Class ;
+    rdfs:label "Smart Appliance" ;
+    rdfs:comment "A device that can be controlled remotely and optimizes energy usage." .
+
+:EnergySource rdf:type owl:Class ;
+    rdfs:label "Energy Source" ;
+    rdfs:comment "The source of energy used by smart appliances." .
+
+:EnergyConsumption rdf:type owl:Class ;
+    rdfs:label "Energy Consumption" ;
+    rdfs:comment "The amount of energy consumed by a smart appliance." .
+
+:User rdf:type owl:Class ;
+    rdfs:label "User" ;
+    rdfs:comment "A person who interacts with smart appliances." .
+
+:Location rdf:type owl:Class ;
+    rdfs:label "Location" ;
+    rdfs:comment "The physical location where a smart appliance is installed." .
+
+:SmartHome rdf:type owl:Class ;
+    rdfs:label "Smart Home" ;
+    rdfs:comment "A home equipped with smart appliances." .
+
+# Properties
+:hasEnergySource rdf:type owl:ObjectProperty ;
+    rdfs:label "has energy source" ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :EnergySource ;
+    rdfs:comment "Indicates the energy source used by the smart appliance." .
+
+:consumes rdf:type owl:ObjectProperty ;
+    rdfs:label "consumes" ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :EnergyConsumption ;
+    rdfs:comment "Indicates the energy consumption of the smart appliance." .
+
+:locatedIn rdf:type owl:ObjectProperty ;
+    rdfs:label "located in" ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :Location ;
+    rdfs:comment "Indicates the location of the smart appliance." .
+
+:usedBy rdf:type owl:ObjectProperty ;
+    rdfs:label "used by" ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :User ;
+    rdfs:comment "Indicates the user who operates the smart appliance." .
+
+:partOf rdf:type owl:ObjectProperty ;
+    rdfs:label "part of" ;
+    rdfs:domain :SmartAppliance ;
+    rdfs:range :SmartHome ;
+    rdfs:comment "Indicates that the smart appliance is part of a smart home." .
+
+:hasConsumptionValue rdf:type owl:DatatypeProperty ;
+    rdfs:label "has consumption value" ;
+    rdfs:domain :EnergyConsumption ;
+    rdfs:range xsd:float ;
+    rdfs:comment "The numerical value of energy consumption." .
+
+:hasSourceType rdf:type owl:DatatypeProperty ;
+    rdfs:label "has source type" ;
+    rdfs:domain :EnergySource ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of energy source (e.g., solar, grid, wind)." .
+
+# Instances (Examples)
+:SolarPanel rdf:type :EnergySource ;
+    :hasSourceType "Solar" .
+
+:Electricity rdf:type :EnergySource ;
+    :hasSourceType "Grid" .
+
+:WashingMachine rdf:type :SmartAppliance ;
+    :hasEnergySource :Electricity ;
+    :consumes [ rdf:type :EnergyConsumption ; :hasConsumptionValue "1.5"^^xsd:float ] ;
+    :locatedIn :LaundryRoom ;
+    :usedBy :User1 ;
+    :partOf :SmartHome1 .
+
+:SmartHome1 rdf:type :SmartHome ;
+    rdfs:label "Smart Home 1" .
+
+:LaundryRoom rdf:type :Location ;
+    rdfs:label "Laundry Room" .
+
+:User1 rdf:type :User ;
+    rdfs:label "John Doe" .

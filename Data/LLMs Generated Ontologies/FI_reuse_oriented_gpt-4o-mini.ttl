@@ -1,0 +1,106 @@
+# Below is an example of an ontology in Turtle (TTL) format for the IoT testbed domain in Turtle syntax, along with alignment notes to the Fiesta-IoT ontology.
+
+# ```turtle
+@prefix iot: <http://example.org/iot#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix fiesta: <http://purl.org/iot/fiesta#> .
+
+# Classes
+iot:Device
+  a owl:Class ;
+  rdfs:label "Device" ;
+  rdfs:comment "A physical or virtual entity that can be controlled or monitored." ;
+  owl:equivalentClass [ a owl:Class ; rdfs:label "Device" ; owl:sameAs fiesta:Device ] .
+
+iot:Sensor
+  a owl:Class ;
+  rdfs:label "Sensor" ;
+  rdfs:comment "A device that measures a physical or environmental parameter." ;
+  owl:equivalentClass [ a owl:Class ; rdfs:label "Sensor" ; owl:sameAs fiesta:Sensor ] .
+
+iot:Actuator
+  a owl:Class ;
+  rdfs:label "Actuator" ;
+  rdfs:comment "A device that controls or modifies a physical or environmental parameter." ;
+  owl:equivalentClass [ a owl:Class ; rdfs:label "Actuator" ; owl:sameAs fiesta:Actuator ] .
+
+iot:Gateway
+  a owl:Class ;
+  rdfs:label "Gateway" ;
+  rdfs:comment "A device that connects multiple networks or devices." ;
+  owl:equivalentClass [ a owl:Class ; rdfs:label "Gateway" ; owl:sameAs fiesta:Gateway ] .
+
+iot:Network
+  a owl:Class ;
+  rdfs:label "Network" ;
+  rdfs:comment "A collection of interconnected devices or nodes." ;
+  owl:equivalentClass [ a owl:Class ; rdfs:label "Network" ; owl:sameAs fiesta:Network ] .
+
+iot:Testbed
+  a owl:Class ;
+  rdfs:label "Testbed" ;
+  rdfs:comment "A controlled environment for testing and evaluating IoT devices and systems." ;
+  owl:equivalentClass [ a owl:Class ; rdfs:label "Testbed" ; owl:sameAs fiesta:Testbed ] .
+
+# Properties
+iot:hasDevice
+  a owl:ObjectProperty ;
+  rdfs:label "has device" ;
+  rdfs:comment "A device is part of a network." ;
+  owl:inverseOf iot:partOfNetwork ;
+  owl:equivalentProperty [ a owl:ObjectProperty ; rdfs:label "has device" ; owl:sameAs fiesta:hasDevice ] .
+
+iot:partOfNetwork
+  a owl:ObjectProperty ;
+  rdfs:label "part of network" ;
+  rdfs:comment "A device is part of a network." ;
+  owl:inverseOf iot:hasDevice ;
+  owl:equivalentProperty [ a owl:ObjectProperty ; rdfs:label "part of network" ; owl:sameAs fiesta:partOfNetwork ] .
+
+iot:connectsTo
+  a owl:ObjectProperty ;
+  rdfs:label "connects to" ;
+  rdfs:comment "Two devices are connected." ;
+  owl:equivalentProperty [ a owl:ObjectProperty ; rdfs:label "connects to" ; owl:sameAs fiesta:connectsTo ] .
+
+iot:monitors
+  a owl:ObjectProperty ;
+  rdfs:label "monitors" ;
+  rdfs:comment "A sensor monitors a parameter." ;
+  owl:equivalentProperty [ a owl:ObjectProperty ; rdfs:label "monitors" ; owl:sameAs fiesta:monitors ] .
+
+iot:controls
+  a owl:ObjectProperty ;
+  rdfs:label "controls" ;
+  rdfs:comment "An actuator controls a parameter." ;
+  owl:equivalentProperty [ a owl:ObjectProperty ; rdfs:label "controls" ; owl:sameAs fiesta:controls ] .
+
+iot:hasGateway
+  a owl:ObjectProperty ;
+  rdfs:label "has gateway" ;
+  rdfs:comment "A network has a gateway." ;
+  owl:equivalentProperty [ a owl:ObjectProperty ; rdfs:label "has gateway" ; owl:sameAs fiesta:hasGateway ] .
+# ```
+
+# Here's a structured format of the ontology, including alignment notes:
+
+# ### Classes
+
+# *   **Device**: A physical or virtual entity that can be controlled or monitored. (Equivalent to `fiesta:Device`)
+# *   **Sensor**: A device that measures a physical or environmental parameter. (Equivalent to `fiesta:Sensor`)
+# *   **Actuator**: A device that controls or modifies a physical or environmental parameter. (Equivalent to `fiesta:Actuator`)
+# *   **Gateway**: A device that connects multiple networks or devices. (Equivalent to `fiesta:Gateway`)
+# *   **Network**: A collection of interconnected devices or nodes. (Equivalent to `fiesta:Network`)
+# *   **Testbed**: A controlled environment for testing and evaluating IoT devices and systems. (Equivalent to `fiesta:Testbed`)
+
+# ### Properties
+
+# *   **hasDevice**: A device is part of a network. (Equivalent to `fiesta:hasDevice`)
+# *   **partOfNetwork**: A device is part of a network. (Equivalent to `fiesta:partOfNetwork`)
+# *   **connectsTo**: Two devices are connected. (Equivalent to `fiesta:connectsTo`)
+# *   **monitors**: A sensor monitors a parameter. (Equivalent to `fiesta:monitors`)
+# *   **controls**: An actuator controls a parameter. (Equivalent to `fiesta:controls`)
+# *   **hasGateway**: A network has a gateway. (Equivalent to `fiesta:hasGateway`)
+
+# Note that the ontology is designed to align with the Fiesta-IoT ontology, where possible. The alignment notes provide information on the equivalent classes and properties in the Fiesta-IoT ontology.

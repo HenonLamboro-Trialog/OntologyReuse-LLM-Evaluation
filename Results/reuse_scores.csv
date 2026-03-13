@@ -1,0 +1,17 @@
+LR,SR,SA,LC,RD,ontology
+0.050505050505050504,0.0,0.0,0.0,0.010101010101010102,allignmentoriented_gpt4.1.ttl
+0.0,0.0,0.0,0.0,0.0,allignmentoriented_model_gpt-4o-mini.ttl
+0.010101010101010102,0.0,0.0,0.0,0.0020202020202020206,allignment_oriented_Llama-3.1-8B-Instruct.ttl
+0.0,0.0,0.0,0.0,0.0,allignment_oriented_Qwen2.5-7B-Instruct.ttl
+0.010101010101010102,0.0,0.0,0.0,0.0020202020202020206,reuse_oriented_gpt4.1.ttl
+0.0,0.0,0.0,0.0,0.0,reuse_oriented_Llama-3.1-8B-Instruct.ttl
+0.0,0.0,0.0,0.0,0.0,reuse_oriented_model_gpt-4o-mini.ttl
+0.0,0.0,0.0,0.0,0.0,reuse_oriented_Qwen2.5-7B-Instruct.ttl
+0.0,0.018867924528301886,0.03773584905660377,0.0,0.016981132075471698,structured_gpt4.1.ttl
+0.0,0.0,0.0,0.0,0.0,structured_Llama-3.1-8B-Instruct.ttl
+0.0,0.0,0.0,0.0,0.0,structured_model_gpt-4o-mini.ttl
+0.0,0.0,0.0,0.0,0.0,structured_Qwen2.5-7B-Instruct.ttl
+0.0,0.0,0.0,0.0,0.0,unstructured_gpt4.1.ttl
+0.010101010101010102,0.0,0.0,0.0,0.0020202020202020206,unstructured_Llama-3.1-8B-Instruct.ttl
+0.010101010101010102,0.0,0.0,0.0,0.0020202020202020206,unstructured_model_gpt-4o-mini.ttl
+0.010101010101010102,0.0,0.0,0.0,0.0020202020202020206,unstructured_Qwen2.5-7B-Instruct.ttl

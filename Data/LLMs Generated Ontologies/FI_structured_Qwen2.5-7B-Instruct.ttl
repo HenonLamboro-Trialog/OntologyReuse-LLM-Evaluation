@@ -1,0 +1,143 @@
+# ```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://llmtest.org/energy/> .
+
+# Root class
+:Testbed a owl:Class ;
+    rdfs:label "Testbed" ;
+    rdfs:comment "A physical or virtual environment where IoT devices and applications are deployed for testing and experimentation." .
+
+# Device classes
+:Device a owl:Class ;
+    rdfs:subClassOf :Testbed ;
+    rdfs:label "Device" ;
+    rdfs:comment "A physical or virtual device that can interact with sensors and store data." .
+
+:Sensor a owl:Class ;
+    rdfs:subClassOf :Device ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that detects and measures physical or environmental conditions." .
+
+:Actuator a owl:Class ;
+    rdfs:subClassOf :Device ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A device that performs actions based on the data received from sensors." .
+
+# Application classes
+:Application a owl:Class ;
+    rdfs:subClassOf :Testbed ;
+    rdfs:label "Application" ;
+    rdfs:comment "A software application that interacts with devices and processes data." .
+
+:DataStorage a owl:Class ;
+    rdfs:subClassOf :Application ;
+    rdfs:label "DataStorage" ;
+    rdfs:comment "An application responsible for storing and managing data from devices." .
+
+:DataProcessing a owl:Class ;
+    rdfs:subClassOf :Application ;
+    rdfs:label "DataProcessing" ;
+    rdfs:comment "An application responsible for processing and analyzing data from devices." .
+
+# Sensor types
+:TemperatureSensor a owl:Class ;
+    rdfs:subClassOf :Sensor ;
+    rdfs:label "TemperatureSensor" ;
+    rdfs:comment "A sensor that measures temperature." .
+
+:HumiditySensor a owl:Class ;
+    rdfs:subClassOf :Sensor ;
+    rdfs:label "HumiditySensor" ;
+    rdfs:comment "A sensor that measures humidity." .
+
+# Actuator types
+:Heater a owl:Class ;
+    rdfs:subClassOf :Actuator ;
+    rdfs:label "Heater" ;
+    rdfs:comment "An actuator that heats up based on sensor data." .
+
+:Fan a owl:Class ;
+    rdfs:subClassOf :Actuator ;
+    rdfs:label "Fan" ;
+    rdfs:comment "An actuator that cools down based on sensor data." .
+
+# Data properties
+:hasSensor a rdf:Property ;
+    rdfs:domain :Device ;
+    rdfs:range :Sensor ;
+    rdfs:label "hasSensor" ;
+    rdfs:comment "Indicates the sensor associated with a device." .
+
+:hasActuator a rdf:Property ;
+    rdfs:domain :Device ;
+    rdfs:range :Actuator ;
+    rdfs:label "hasActuator" ;
+    rdfs:comment "Indicates the actuator associated with a device." .
+
+:hasDataStorage a rdf:Property ;
+    rdfs:domain :Application ;
+    rdfs:range :DataStorage ;
+    rdfs:label "hasDataStorage" ;
+    rdfs:comment "Indicates the data storage application associated with an application." .
+
+:hasDataProcessing a rdf:Property ;
+    rdfs:domain :Application ;
+    rdfs:range :DataProcessing ;
+    rdfs:label "hasDataProcessing" ;
+    rdfs:comment "Indicates the data processing application associated with an application." .
+
+:observes a rdf:Property ;
+    rdfs:domain :Sensor ;
+    rdfs:range :Sensor ;
+    rdfs:label "observes" ;
+    rdfs:comment "Indicates the sensor that is being observed by another sensor." .
+
+:controls a rdf:Property ;
+    rdfs:domain :Actuator ;
+    rdfs:range :Actuator ;
+    rdfs:label "controls" ;
+    rdfs:comment "Indicates the actuator that is being controlled by another actuator." .
+
+:hasData a rdf:Property ;
+    rdfs:domain :DataStorage ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasData" ;
+    rdfs:comment "Indicates the data stored in the data storage application." .
+
+:processesData a rdf:Property ;
+    rdfs:domain :DataProcessing ;
+    rdfs:range xsd:string ;
+    rdfs:label "processesData" ;
+    rdfs:comment "Indicates the data processed by the data processing application." .
+
+# Instances
+:Testbed1 a :Testbed ;
+    rdfs:label "Testbed1" .
+
+:Device1 a :Device ;
+    rdfs:label "Device1" ;
+    :hasSensor :TemperatureSensor1 ;
+    :hasActuator :Heater1 .
+
+:Sensor1 a :TemperatureSensor ;
+    rdfs:label "Sensor1" .
+
+:Actuator1 a :Heater ;
+    rdfs:label "Actuator1" .
+
+:Application1 a :Application ;
+    rdfs:label "Application1" ;
+    :hasDataStorage :DataStorage1 ;
+    :hasDataProcessing :DataProcessing1 .
+
+:DataStorage1 a :DataStorage ;
+    rdfs:label "DataStorage1" ;
+    :hasData "SampleData1" .
+
+:DataProcessing1 a :DataProcessing ;
+    rdfs:label "DataProcessing1" ;
+    :processesData "ProcessedData1" .
+# ```

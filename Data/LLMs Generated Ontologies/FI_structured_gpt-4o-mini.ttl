@@ -1,0 +1,192 @@
+# ```turtle
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix :     <http://llmtest.org/energy/> .
+
+#################################################################
+# Classes
+#################################################################
+
+:Testbed a owl:Class ;
+    rdfs:comment "A controlled environment for testing IoT devices and applications." .
+
+:Device a owl:Class ;
+    rdfs:comment "A physical or virtual entity capable of interacting with sensors or actuators." .
+
+:Application a owl:Class ;
+    rdfs:comment "A software system deployed on a testbed to interact with devices and sensors." .
+
+:Sensor a owl:Class ;
+    rdfs:comment "A device that detects or measures physical properties and records, indicates, or responds to them." ;
+    rdfs:subClassOf :Device .
+
+:Actuator a owl:Class ;
+    rdfs:comment "A device responsible for moving or controlling a mechanism or system." ;
+    rdfs:subClassOf :Device .
+
+:Observation a owl:Class ;
+    rdfs:comment "A record of a sensor's measurement at a specific time." .
+
+:DataFormat a owl:Class ;
+    rdfs:comment "A specification of how data is structured and encoded." .
+
+:ProprietaryFormat a owl:Class ;
+    rdfs:comment "A data format unique to a particular testbed or vendor." ;
+    rdfs:subClassOf :DataFormat .
+
+:StandardFormat a owl:Class ;
+    rdfs:comment "A data format that follows open, standardized specifications." ;
+    rdfs:subClassOf :DataFormat .
+
+:User a owl:Class ;
+    rdfs:comment "A person or agent interacting with the testbed or its applications." .
+
+:Location a owl:Class ;
+    rdfs:comment "A physical or virtual place where devices or sensors are deployed." .
+
+:SensorType a owl:Class ;
+    rdfs:comment "A classification of sensors based on the property they measure." .
+
+:TemperatureSensor a owl:Class ;
+    rdfs:comment "A sensor that measures temperature." ;
+    rdfs:subClassOf :Sensor ;
+    rdfs:subClassOf :SensorType .
+
+:HumiditySensor a owl:Class ;
+    rdfs:comment "A sensor that measures humidity." ;
+    rdfs:subClassOf :Sensor ;
+    rdfs:subClassOf :SensorType .
+
+:LightSensor a owl:Class ;
+    rdfs:comment "A sensor that measures light intensity." ;
+    rdfs:subClassOf :Sensor ;
+    rdfs:subClassOf :SensorType .
+
+:MotionSensor a owl:Class ;
+    rdfs:comment "A sensor that detects movement." ;
+    rdfs:subClassOf :Sensor ;
+    rdfs:subClassOf :SensorType .
+
+:DataRepository a owl:Class ;
+    rdfs:comment "A storage system for observations and related data." .
+
+:DataStream a owl:Class ;
+    rdfs:comment "A continuous flow of observation data from sensors." .
+
+:Event a owl:Class ;
+    rdfs:comment "An occurrence detected by a sensor or application." .
+
+:Alert a owl:Class ;
+    rdfs:comment "A notification generated in response to an event." ;
+    rdfs:subClassOf :Event .
+
+:EnergyMeter a owl:Class ;
+    rdfs:comment "A device that measures energy consumption." ;
+    rdfs:subClassOf :Sensor .
+
+:Gateway a owl:Class ;
+    rdfs:comment "A device that connects sensors and devices to the network." ;
+    rdfs:subClassOf :Device .
+
+:Protocol a owl:Class ;
+    rdfs:comment "A set of rules governing data communication." .
+
+:Network a owl:Class ;
+    rdfs:comment "An infrastructure that connects devices and applications." .
+
+:Firmware a owl:Class ;
+    rdfs:comment "Software programmed into devices to control their functions." .
+
+:Calibration a owl:Class ;
+    rdfs:comment "The process of configuring a sensor to provide accurate measurements." .
+
+:MaintenanceRecord a owl:Class ;
+    rdfs:comment "A record of maintenance activities performed on a device." .
+
+:AccessPolicy a owl:Class ;
+    rdfs:comment "A set of rules defining access permissions for users or applications." .
+
+:DataQuality a owl:Class ;
+    rdfs:comment "A measure of the reliability and accuracy of observation data." .
+
+:UnitOfMeasurement a owl:Class ;
+    rdfs:comment "A standard quantity used to express physical properties measured by sensors." .
+
+:TimeInterval a owl:Class ;
+    rdfs:comment "A duration or period associated with observations or events." .
+
+#################################################################
+# Object Properties
+#################################################################
+
+:ownsDevice a owl:ObjectProperty ;
+    rdfs:domain :Testbed ;
+    rdfs:range :Device ;
+    rdfs:comment "Links a testbed to the devices it owns." .
+
+:hostsApplication a owl:ObjectProperty ;
+    rdfs:domain :Testbed ;
+    rdfs:range :Application ;
+    rdfs:comment "Links a testbed to the applications it hosts." .
+
+:hasSensor a owl:ObjectProperty ;
+    rdfs:domain :Device ;
+    rdfs:range :Sensor ;
+    rdfs:comment "Indicates that a device has a sensor component." .
+
+:generatesObservation a owl:ObjectProperty ;
+    rdfs:domain :Sensor ;
+    rdfs:range :Observation ;
+    rdfs:comment "Indicates that a sensor generates observations." .
+
+:storedIn a owl:ObjectProperty ;
+    rdfs:domain :Observation ;
+    rdfs:range :DataRepository ;
+    rdfs:comment "Links an observation to the data repository where it is stored." .
+
+:usesFormat a owl:ObjectProperty ;
+    rdfs:domain :DataRepository ;
+    rdfs:range :DataFormat ;
+    rdfs:comment "Indicates the data format used by a repository." .
+
+:locatedAt a owl:ObjectProperty ;
+    rdfs:domain :Device ;
+    rdfs:range :Location ;
+    rdfs:comment "Specifies the location of a device." .
+
+:triggeredBy a owl:ObjectProperty ;
+    rdfs:domain :Event ;
+    rdfs:range :Observation ;
+    rdfs:comment "Links an event to the observation that triggered it." .
+
+#################################################################
+# Datatype Properties
+#################################################################
+
+:observationValue a owl:DatatypeProperty ;
+    rdfs:domain :Observation ;
+    rdfs:range xsd:float ;
+    rdfs:comment "The value measured by the sensor in an observation." .
+
+:timestamp a owl:DatatypeProperty ;
+    rdfs:domain :Observation ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The time at which the observation was made." .
+
+:deviceID a owl:DatatypeProperty ;
+    rdfs:domain :Device ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A unique identifier for a device." .
+
+:formatName a owl:DatatypeProperty ;
+    rdfs:domain :DataFormat ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the data format." .
+
+:userName a owl:DatatypeProperty ;
+    rdfs:domain :User ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of a user." .
+# ```

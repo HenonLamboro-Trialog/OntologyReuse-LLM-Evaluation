@@ -1,0 +1,83 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://llmtest.org/energy/> .
+
+# Classes
+:Appliance rdfs:comment "A generic class for all appliances." .
+:SmartAppliance rdfs:comment "A subclass of Appliance that represents smart appliances." ; a owl:Class ;
+    rdfs:subClassOf :Appliance .
+:Refrigerator rdfs:comment "A smart appliance used for food preservation." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:WashingMachine rdfs:comment "A smart appliance used for cleaning clothes." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:AirConditioner rdfs:comment "A smart appliance used for temperature control." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:Oven rdfs:comment "A smart appliance used for cooking food." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:Toaster rdfs:comment "A smart appliance used for toasting bread." ; a owl:Class ;
+    rdfs:subClassOf :Oven .
+:Microwave rdfs:comment "A smart appliance used for heating food." ; a owl:Class ;
+    rdfs:subClassOf :Oven .
+:SmartPlug rdfs:comment "A smart appliance used for controlling other devices." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:EnergyMeter rdfs:comment "A device used for measuring energy consumption." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:LightBulb rdfs:comment "A smart appliance used for lighting." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:Fan rdfs:comment "A smart appliance used for air circulation." ; a owl:Class ;
+    rdfs:subClassOf :AirConditioner .
+:Heater rdfs:comment "A smart appliance used for heating."  ; a owl:Class ;
+    rdfs:subClassOf :AirConditioner .
+:AirCleaner rdfs:comment "A smart appliance used for cleaning air." ; a owl:Class ;
+    rdfs:subClassOf :AirConditioner .
+:SmartHub rdfs:comment "A central device for controlling and managing smart appliances." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:EnergyUsage rdfs:comment "A class representing energy usage data." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:EnergyConsumption rdfs:comment "A class representing energy consumption data." ; a owl:Class ;
+    rdfs:subClassOf :EnergyUsage .
+:EnergySaving rdfs:comment "A class representing energy-saving features." ; a owl:Class ;
+    rdfs:subClassOf :SmartAppliance .
+:EnergyEfficiency rdfs:comment "A class representing energy efficiency metrics." ; a owl:Class ;
+    rdfs:subClassOf :EnergySaving .
+:EnergySavings rdfs:comment "A class representing energy savings achieved." ; a owl:Class ;
+    rdfs:subClassOf :EnergySaving .
+
+# Object Properties
+:hasEnergyUsage rdfs:comment "Indicates the energy usage of an appliance." ; a owl:ObjectProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range :EnergyUsage .
+:isControlledBy rdfs:comment "Indicates the control relationship between a smart hub and an appliance." ; a owl:ObjectProperty ;
+    rdfs:domain :SmartHub ;
+    rdfs:range :SmartAppliance .
+:isPartOf rdfs:comment "Indicates the part-of relationship between appliances." ; a owl:ObjectProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range :Appliance .
+:hasEnergySavingFeature rdfs:comment "Indicates the energy-saving features of an appliance." ; a owl:ObjectProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range :EnergySaving .
+:hasEnergyEfficiency rdfs:comment "Indicates the energy efficiency of an appliance." ; a owl:ObjectProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range :EnergyEfficiency .
+:hasEnergySavings rdfs:comment "Indicates the energy savings achieved by an appliance." ; a owl:ObjectProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range :EnergySavings .
+
+# Datatype Properties
+:hasEnergyConsumption rdfs:comment "Indicates the energy consumption of an appliance." ; a owl:DatatypeProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range xsd:decimal .
+:hasEnergySaving rdfs:comment "Indicates the energy savings of an appliance." ; a owl:DatatypeProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range xsd:decimal .
+:hasEnergyEfficiencyRating rdfs:comment "Indicates the energy efficiency rating of an appliance." ; a owl:DatatypeProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range xsd:integer .
+:hasEnergyUsageRating rdfs:comment "Indicates the energy usage rating of an appliance." ; a owl:DatatypeProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range xsd:integer .
+:hasEnergySavingPercentage rdfs:comment "Indicates the energy saving percentage of an appliance." ; a owl:DatatypeProperty ;
+    rdfs:domain :Appliance ;
+    rdfs:range xsd:decimal .

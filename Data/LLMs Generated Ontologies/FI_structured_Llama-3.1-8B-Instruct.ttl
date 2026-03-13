@@ -1,0 +1,200 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://llmtest.org/energy/> .
+
+:Device rdf:type owl:Class ;
+  rdfs:comment "A device in the IoT testbed." .
+
+:Sensor rdf:type owl:Class ;
+  rdfs:comment "A sensor in the IoT testbed." ;
+  rdfs:subClassOf :Device .
+
+:Application rdf:type owl:Class ;
+  rdfs:comment "An application in the IoT testbed." ;
+  rdfs:subClassOf :Device .
+
+:Testbed rdf:type owl:Class ;
+  rdfs:comment "A testbed in the IoT testbed." ;
+  rdfs:subClassOf :Device .
+
+:Observation rdf:type owl:Class ;
+  rdfs:comment "An observation in the IoT testbed." ;
+  rdfs:subClassOf :Application .
+
+:Data rdf:type owl:Class ;
+  rdfs:comment "Data in the IoT testbed." ;
+  rdfs:subClassOf :Application .
+
+:Format rdf:type owl:Class ;
+  rdfs:comment "A data format in the IoT testbed." ;
+  rdfs:subClassOf :Application .
+
+:ProprietaryFormat rdf:type owl:Class ;
+  rdfs:comment "A proprietary data format in the IoT testbed." ;
+  rdfs:subClassOf :Format .
+
+:SensorReading rdf:type owl:Class ;
+  rdfs:comment "A sensor reading in the IoT testbed." ;
+  rdfs:subClassOf :Observation .
+
+:DeviceType rdf:type owl:Class ;
+  rdfs:comment "A device type in the IoT testbed." ;
+  rdfs:subClassOf :Device .
+
+:ApplicationType rdf:type owl:Class ;
+  rdfs:comment "An application type in the IoT testbed." ;
+  rdfs:subClassOf :Application .
+
+:TestbedType rdf:type owl:Class ;
+  rdfs:comment "A testbed type in the IoT testbed." ;
+  rdfs:subClassOf :Testbed .
+
+:ObservationType rdf:type owl:Class ;
+  rdfs:comment "An observation type in the IoT testbed." ;
+  rdfs:subClassOf :Observation .
+
+:DataType rdf:type owl:Class ;
+  rdfs:comment "A data type in the IoT testbed." ;
+  rdfs:subClassOf :Data .
+
+:FormatType rdf:type owl:Class ;
+  rdfs:comment "A format type in the IoT testbed." ;
+  rdfs:subClassOf :Format .
+
+:ProprietaryFormatType rdf:type owl:Class ;
+  rdfs:comment "A proprietary format type in the IoT testbed." ;
+  rdfs:subClassOf :ProprietaryFormat .
+
+:SensorType rdf:type owl:Class ;
+  rdfs:comment "A sensor type in the IoT testbed." ;
+  rdfs:subClassOf :Sensor .
+
+:DeviceManufacturer rdf:type owl:Class ;
+  rdfs:comment "A device manufacturer in the IoT testbed." ;
+  rdfs:subClassOf :Device .
+
+:ApplicationDeveloper rdf:type owl:Class ;
+  rdfs:comment "An application developer in the IoT testbed." ;
+  rdfs:subClassOf :Application .
+
+:TestbedOperator rdf:type owl:Class ;
+  rdfs:comment "A testbed operator in the IoT testbed." ;
+  rdfs:subClassOf :Testbed .
+
+:ObservationSource rdf:type owl:Class ;
+  rdfs:comment "An observation source in the IoT testbed." ;
+  rdfs:subClassOf :Observation .
+
+:DataStorage rdf:type owl:Class ;
+  rdfs:comment "Data storage in the IoT testbed." ;
+  rdfs:subClassOf :Data .
+
+:FormatStorage rdf:type owl:Class ;
+  rdfs:comment "Format storage in the IoT testbed." ;
+  rdfs:subClassOf :Format .
+
+:ProprietaryFormatStorage rdf:type owl:Class ;
+  rdfs:comment "Proprietary format storage in the IoT testbed." ;
+  rdfs:subClassOf :ProprietaryFormat .
+
+:SensorReadingValue rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The value of a sensor reading." ;
+  rdfs:domain :SensorReading ;
+  rdfs:range xsd:float .
+
+:DeviceManufacturerName rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The name of a device manufacturer." ;
+  rdfs:domain :DeviceManufacturer ;
+  rdfs:range xsd:string .
+
+:ApplicationDeveloperName rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The name of an application developer." ;
+  rdfs:domain :ApplicationDeveloper ;
+  rdfs:range xsd:string .
+
+:TestbedOperatorName rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The name of a testbed operator." ;
+  rdfs:domain :TestbedOperator ;
+  rdfs:range xsd:string .
+
+:ObservationSourceName rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The name of an observation source." ;
+  rdfs:domain :ObservationSource ;
+  rdfs:range xsd:string .
+
+:DataStorageLocation rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The location of data storage." ;
+  rdfs:domain :DataStorage ;
+  rdfs:range xsd:string .
+
+:FormatStorageLocation rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The location of format storage." ;
+  rdfs:domain :FormatStorage ;
+  rdfs:range xsd:string .
+
+:ProprietaryFormatStorageLocation rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The location of proprietary format storage." ;
+  rdfs:domain :ProprietaryFormatStorage ;
+  rdfs:range xsd:string .
+
+:DeviceHasSensor rdf:type owl:ObjectProperty ;
+  rdfs:comment "A device has a sensor." ;
+  rdfs:domain :Device ;
+  rdfs:range :Sensor .
+
+:ApplicationUsesData rdf:type owl:ObjectProperty ;
+  rdfs:comment "An application uses data." ;
+  rdfs:domain :Application ;
+  rdfs:range :Data .
+
+:FormatStoresData rdf:type owl:ObjectProperty ;
+  rdfs:comment "A format stores data." ;
+  rdfs:domain :Format ;
+  rdfs:range :Data .
+
+:ProprietaryFormatStoresData rdf:type owl:ObjectProperty ;
+  rdfs:comment "A proprietary format stores data." ;
+  rdfs:domain :ProprietaryFormat ;
+  rdfs:range :Data .
+
+:SensorReadsObservation rdf:type owl:ObjectProperty ;
+  rdfs:comment "A sensor reads an observation." ;
+  rdfs:domain :Sensor ;
+  rdfs:range :Observation .
+
+:DeviceIsManufacturedBy rdf:type owl:ObjectProperty ;
+  rdfs:comment "A device is manufactured by a device manufacturer." ;
+  rdfs:domain :Device ;
+  rdfs:range :DeviceManufacturer .
+
+:ApplicationIsDevelopedBy rdf:type owl:ObjectProperty ;
+  rdfs:comment "An application is developed by an application developer." ;
+  rdfs:domain :Application ;
+  rdfs:range :ApplicationDeveloper .
+
+:TestbedIsOperatedBy rdf:type owl:ObjectProperty ;
+  rdfs:comment "A testbed is operated by a testbed operator." ;
+  rdfs:domain :Testbed ;
+  rdfs:range :TestbedOperator .
+
+:ObservationIsFrom rdf:type owl:ObjectProperty ;
+  rdfs:comment "An observation is from an observation source." ;
+  rdfs:domain :Observation ;
+  rdfs:range :ObservationSource .
+
+:DataIsStoredIn rdf:type owl:ObjectProperty ;
+  rdfs:comment "Data is stored in data storage." ;
+  rdfs:domain :Data ;
+  rdfs:range :DataStorage .
+
+:FormatIsStoredIn rdf:type owl:ObjectProperty ;
+  rdfs:comment "A format is stored in format storage." ;
+  rdfs:domain :Format ;
+  rdfs:range :FormatStorage .
+
+:ProprietaryFormatIsStoredIn rdf:type owl:ObjectProperty ;
+  rdfs:comment "A proprietary format is stored in proprietary format storage." ;
+  rdfs:domain :ProprietaryFormat ;
+  rdfs:range :ProprietaryFormatStorage .

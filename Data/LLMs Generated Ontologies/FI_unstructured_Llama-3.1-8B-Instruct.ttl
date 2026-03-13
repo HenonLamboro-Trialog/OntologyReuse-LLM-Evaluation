@@ -1,0 +1,134 @@
+# **iot-testbed-ontology.ttl**
+# ```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix testbed: <http://example.org/iot-testbed-ontology#> .
+
+<http://example.org/iot-testbed-ontology>
+  a owl:Ontology .
+
+### Classes
+
+testbed:Testbed
+  a owl:Class ;
+  rdfs:label "Testbed" ;
+  rdfs:comment "A testbed is a controlled environment for testing and evaluating IoT devices and applications." .
+
+testbed:Device
+  a owl:Class ;
+  rdfs:label "Device" ;
+  rdfs:comment "A device is a physical or virtual entity that interacts with sensors and other devices." .
+
+testbed:Application
+  a owl:Class ;
+  rdfs:label "Application" ;
+  rdfs:comment "An application is a software component that interacts with devices and sensors." .
+
+testbed:Sensor
+  a owl:Class ;
+  rdfs:label "Sensor" ;
+  rdfs:comment "A sensor is a physical or virtual entity that measures and reports environmental conditions." .
+
+testbed:Observation
+  a owl:Class ;
+  rdfs:label "Observation" ;
+  rdfs:comment "An observation is a measurement or report made by a sensor or device." .
+
+testbed:DataFormat
+  a owl:Class ;
+  rdfs:label "DataFormat" ;
+  rdfs:comment "A data format is a proprietary or standard format for storing and exchanging data." .
+
+### Properties
+
+testbed:owns
+  a owl:ObjectProperty ;
+  rdfs:label "owns" ;
+  rdfs:comment "A testbed owns a device or application." ;
+  rdfs:domain testbed:Testbed ;
+  rdfs:range testbed:Device , testbed:Application .
+
+testbed:interactsWith
+  a owl:ObjectProperty ;
+  rdfs:label "interactsWith" ;
+  rdfs:comment "A device or application interacts with a sensor." ;
+  rdfs:domain testbed:Device , testbed:Application ;
+  rdfs:range testbed:Sensor .
+
+testbed:storesObservations
+  a owl:ObjectProperty ;
+  rdfs:label "storesObservations" ;
+  rdfs:comment "A device or application stores observations in a data format." ;
+  rdfs:domain testbed:Device , testbed:Application ;
+  rdfs:range testbed:DataFormat .
+
+testbed:usesDataFormat
+  a owl:ObjectProperty ;
+  rdfs:label "usesDataFormat" ;
+  rdfs:comment "A device or application uses a data format to store or exchange data." ;
+  rdfs:domain testbed:Device , testbed:Application ;
+  rdfs:range testbed:DataFormat .
+
+### Individuals
+
+testbed:Testbed1
+  a testbed:Testbed ;
+  rdfs:label "Testbed 1" .
+
+testbed:Device1
+  a testbed:Device ;
+  rdfs:label "Device 1" ;
+  testbed:owns testbed:Testbed1 .
+
+testbed:Application1
+  a testbed:Application ;
+  rdfs:label "Application 1" ;
+  testbed:owns testbed:Testbed1 .
+
+testbed:Sensor1
+  a testbed:Sensor ;
+  rdfs:label "Sensor 1" .
+
+testbed:Observation1
+  a testbed:Observation ;
+  rdfs:label "Observation 1" ;
+  testbed:interactsWith testbed:Sensor1 .
+
+testbed:DataFormat1
+  a testbed:DataFormat ;
+  rdfs:label "Data Format 1" .
+
+testbed:Device1
+  a testbed:Device ;
+  rdfs:label "Device 1" ;
+  testbed:storesObservations testbed:DataFormat1 ;
+  testbed:usesDataFormat testbed:DataFormat1 .
+# ```
+# This ontology defines the following concepts and relationships:
+
+# *   **Testbed**: A controlled environment for testing and evaluating IoT devices and applications.
+# *   **Device**: A physical or virtual entity that interacts with sensors and other devices.
+# *   **Application**: A software component that interacts with devices and sensors.
+# *   **Sensor**: A physical or virtual entity that measures and reports environmental conditions.
+# *   **Observation**: A measurement or report made by a sensor or device.
+# *   **DataFormat**: A proprietary or standard format for storing and exchanging data.
+
+# The ontology also defines the following relationships:
+
+# *   **owns**: A testbed owns a device or application.
+# *   **interactsWith**: A device or application interacts with a sensor.
+# *   **storesObservations**: A device or application stores observations in a data format.
+# *   **usesDataFormat**: A device or application uses a data format to store or exchange data.
+
+# The ontology includes several individuals to illustrate the relationships between these concepts:
+
+# *   **Testbed1**: A testbed that owns **Device1** and **Application1**.
+# *   **Device1**: A device that interacts with **Sensor1** and stores observations in **DataFormat1**.
+# *   **Application1**: An application that interacts with **Sensor1** and stores observations in **DataFormat1**.
+# *   **Sensor1**: A sensor that makes observations.
+# *   **Observation1**: An observation made by **Sensor1**.
+# *   **DataFormat1**: A data format used by **Device1** and **Application1**.
+
+# This ontology provides a foundation for representing the relationships between testbeds, devices, applications, sensors, observations, and data formats in the IoT testbed domain.

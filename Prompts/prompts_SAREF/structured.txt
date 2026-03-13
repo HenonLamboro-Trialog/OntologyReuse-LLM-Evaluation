@@ -1,0 +1,6 @@
+You are an ontology engineer. Produce a Turtle ontology about smart appliance energy doamin that satisfies:
+- Prefixes: rdf, rdfs, owl, xsd, : <http://llmtest.org/energy/>
+- Atleast 30 classes, enumerated with comments describing each class (rdfs:comment)
+- Properties: at least 8 object properties, 5 datatype properties, with domains and ranges
+- Use rdfs:subClassOf to produce a 3-level hierarchy for at least 10 classes
+- Output only valid Turtle, no extra explanation

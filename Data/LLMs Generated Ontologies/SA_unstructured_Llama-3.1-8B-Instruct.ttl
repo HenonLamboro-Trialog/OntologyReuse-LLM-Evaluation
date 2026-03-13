@@ -1,0 +1,117 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix energy: <http://example.org/energy#> .
+
+<http://example.org/energy>
+  a owl:Ontology .
+
+### Classes
+
+energy:Appliance
+  a owl:Class ;
+  rdfs:label "Appliance" ;
+  rdfs:comment "A device that consumes or produces energy." .
+
+energy:SmartAppliance
+  a owl:Class ;
+  rdfs:label "Smart Appliance" ;
+  rdfs:comment "An appliance that can be controlled remotely and monitored in real-time." ;
+  rdfs:subClassOf energy:Appliance .
+
+energy:EnergySource
+  a owl:Class ;
+  rdfs:label "Energy Source" ;
+  rdfs:comment "A source of energy, such as a power grid or a renewable energy source." .
+
+energy:EnergyConsumer
+  a owl:Class ;
+  rdfs:label "Energy Consumer" ;
+  rdfs:comment "A device that consumes energy, such as a light bulb or a refrigerator." ;
+  rdfs:subClassOf energy:Appliance .
+
+energy:EnergyProducer
+  a owl:Class ;
+  rdfs:label "Energy Producer" ;
+  rdfs:comment "A device that produces energy, such as a solar panel or a wind turbine." ;
+  rdfs:subClassOf energy:Appliance .
+
+### Properties
+
+energy:hasEnergySource
+  a owl:ObjectProperty ;
+  rdfs:label "has Energy Source" ;
+  rdfs:comment "The energy source that powers the appliance." ;
+  rdfs:domain energy:Appliance ;
+  rdfs:range energy:EnergySource .
+
+energy:consumesEnergy
+  a owl:ObjectProperty ;
+  rdfs:label "consumes Energy" ;
+  rdfs:comment "The amount of energy consumed by the appliance." ;
+  rdfs:domain energy:EnergyConsumer ;
+  rdfs:range xsd:decimal .
+
+energy:producesEnergy
+  a owl:ObjectProperty ;
+  rdfs:label "produces Energy" ;
+  rdfs:comment "The amount of energy produced by the appliance." ;
+  rdfs:domain energy:EnergyProducer ;
+  rdfs:range xsd:decimal .
+
+energy:hasSmartFeatures
+  a owl:ObjectProperty ;
+  rdfs:label "has Smart Features" ;
+  rdfs:comment "The smart features of the appliance, such as remote control and monitoring." ;
+  rdfs:domain energy:SmartAppliance ;
+  rdfs:range owl:Thing .
+
+energy:hasEnergyUsagePattern
+  a owl:ObjectProperty ;
+  rdfs:label "has Energy Usage Pattern" ;
+  rdfs:comment "The energy usage pattern of the appliance, such as peak hours and off-peak hours." ;
+  rdfs:domain energy:Appliance ;
+  rdfs:range owl:Thing .
+
+### Individuals
+
+energy:SmartRefrigerator
+  a energy:SmartAppliance ;
+  rdfs:label "Smart Refrigerator" ;
+  energy:hasSmartFeatures [
+    a owl:Thing ;
+    rdfs:label "Remote Control and Monitoring" ;
+  ] .
+
+energy:SolarPanel
+  a energy:EnergyProducer ;
+  rdfs:label "Solar Panel" ;
+  energy:producesEnergy "1000"^^xsd:decimal .
+
+energy:LEDLightBulb
+  a energy:EnergyConsumer ;
+  rdfs:label "LED Light Bulb" ;
+  energy:consumesEnergy "20"^^xsd:decimal .
+# ```
+
+# This ontology defines the following concepts and relationships:
+
+# *   **Classes**:
+#     *   `energy:Appliance`: A device that consumes or produces energy.
+#     *   `energy:SmartAppliance`: An appliance that can be controlled remotely and monitored in real-time.
+#     *   `energy:EnergySource`: A source of energy, such as a power grid or a renewable energy source.
+#     *   `energy:EnergyConsumer`: A device that consumes energy, such as a light bulb or a refrigerator.
+#     *   `energy:EnergyProducer`: A device that produces energy, such as a solar panel or a wind turbine.
+# *   **Properties**:
+#     *   `energy:hasEnergySource`: The energy source that powers the appliance.
+#     *   `energy:consumesEnergy`: The amount of energy consumed by the appliance.
+#     *   `energy:producesEnergy`: The amount of energy produced by the appliance.
+#     *   `energy:hasSmartFeatures`: The smart features of the appliance, such as remote control and monitoring.
+#     *   `energy:hasEnergyUsagePattern`: The energy usage pattern of the appliance, such as peak hours and off-peak hours.
+# *   **Individuals**:
+#     *   `energy:SmartRefrigerator`: A smart refrigerator with remote control and monitoring features.
+#     *   `energy:SolarPanel`: A solar panel that produces 1000 units of energy.
+#     *   `energy:LEDLightBulb`: An LED light bulb that consumes 20 units of energy.
+
+# This ontology provides a basic structure for representing smart appliances and their relationships with energy sources and usage patterns. It can be extended and modified to accommodate more specific requirements and use cases.

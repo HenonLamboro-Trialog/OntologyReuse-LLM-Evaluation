@@ -1,0 +1,127 @@
+# Here's an example ontology in TTL (Turtle) format for a smart-appliance in the energy domain, reusing labels and terminology from the SAREF ontology where possible.
+# ```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix saref: <http://www.europeana.eu/schemas/saref/> .
+@prefix smart-appliance: <http://example.org/smart-appliance#> .
+
+smart-appliance:SmartAppliance
+  a rdfs:Class ;
+  rdfs:label "Smart Appliance" ;
+  rdfs:comment "A smart appliance is an appliance that can be controlled, monitored, and optimized remotely." ;
+  rdfs:subClassOf saref:Appliance .
+
+smart-appliance:ElectricAppliance
+  a rdfs:Class ;
+  rdfs:label "Electric Appliance" ;
+  rdfs:comment "An electric appliance is an appliance that uses electricity as its primary source of energy." ;
+  rdfs:subClassOf smart-appliance:SmartAppliance .
+
+smart-appliance:HeatingAppliance
+  a rdfs:Class ;
+  rdfs:label "Heating Appliance" ;
+  rdfs:comment "A heating appliance is an appliance that generates heat for a space or a process." ;
+  rdfs:subClassOf smart-appliance:ElectricAppliance .
+
+smart-appliance:ElectricHeatingAppliance
+  a rdfs:Class ;
+  rdfs:label "Electric Heating Appliance" ;
+  rdfs:comment "An electric heating appliance is an appliance that generates heat using electricity." ;
+  rdfs:subClassOf smart-appliance:HeatingAppliance .
+
+smart-appliance:EnergySource
+  a rdfs:Class ;
+  rdfs:label "Energy Source" ;
+  rdfs:comment "An energy source is a device or system that generates energy." ;
+  rdfs:subClassOf saref:EnergySource .
+
+smart-appliance:ElectricitySupply
+  a rdfs:Class ;
+  rdfs:label "Electricity Supply" ;
+  rdfs:comment "An electricity supply is a source of electricity." ;
+  rdfs:subClassOf smart-appliance:EnergySource .
+
+smart-appliance:PowerConsumption
+  a rdfs:Class ;
+  rdfs:label "Power Consumption" ;
+  rdfs:comment "Power consumption is the rate at which an appliance uses energy." ;
+  rdfs:subClassOf saref:PowerConsumption .
+
+smart-appliance:EnergyUsage
+  a rdfs:Class ;
+  rdfs:label "Energy Usage" ;
+  rdfs:comment "Energy usage is the total amount of energy used by an appliance over a period of time." ;
+  rdfs:subClassOf saref:EnergyUsage .
+
+smart-appliance:SmartMeter
+  a rdfs:Class ;
+  rdfs:label "Smart Meter" ;
+  rdfs:comment "A smart meter is a device that measures and reports energy usage in real-time." ;
+  rdfs:subClassOf saref:SmartMeter .
+
+smart-appliance:ApplianceStatus
+  a rdfs:Class ;
+  rdfs:label "Appliance Status" ;
+  rdfs:comment "Appliance status is the current state of an appliance, such as on or off." ;
+  rdfs:subClassOf saref:ApplianceStatus .
+
+smart-appliance:ControlCommand
+  a rdfs:Class ;
+  rdfs:label "Control Command" ;
+  rdfs:comment "A control command is an instruction to control an appliance." ;
+  rdfs:subClassOf saref:ControlCommand .
+
+smart-appliance:RemoteControl
+  a rdfs:Class ;
+  rdfs:label "Remote Control" ;
+  rdfs:comment "Remote control is the ability to control an appliance from a remote location." ;
+  rdfs:subClassOf saref:RemoteControl .
+
+smart-appliance:SmartApplianceInstance
+  a rdfs:Class ;
+  rdfs:label "Smart Appliance Instance" ;
+  rdfs:comment "A smart appliance instance is a specific instance of a smart appliance." ;
+  rdfs:subClassOf smart-appliance:SmartAppliance .
+
+smart-appliance:ElectricApplianceInstance
+  a rdfs:Class ;
+  rdfs:label "Electric Appliance Instance" ;
+  rdfs:comment "An electric appliance instance is a specific instance of an electric appliance." ;
+  rdfs:subClassOf smart-appliance:ElectricAppliance .
+
+smart-appliance:HeatingApplianceInstance
+  a rdfs:Class ;
+  rdfs:label "Heating Appliance Instance" ;
+  rdfs:comment "A heating appliance instance is a specific instance of a heating appliance." ;
+  rdfs:subClassOf smart-appliance:HeatingAppliance .
+
+smart-appliance:ElectricHeatingApplianceInstance
+  a rdfs:Class ;
+  rdfs:label "Electric Heating Appliance Instance" ;
+  rdfs:comment "An electric heating appliance instance is a specific instance of an electric heating appliance." ;
+  rdfs:subClassOf smart-appliance:ElectricHeatingAppliance .
+
+smart-appliance:ApplianceInstance
+  a rdfs:Class ;
+  rdfs:label "Appliance Instance" ;
+  rdfs:comment "An appliance instance is a specific instance of an appliance." ;
+  rdfs:subClassOf saref:ApplianceInstance .
+
+smart-appliance:SmartApplianceInstance
+  a rdfs:Class ;
+  rdfs:label "Smart Appliance Instance" ;
+  rdfs:comment "A smart appliance instance is a specific instance of a smart appliance." ;
+  rdfs:subClassOf saref:ApplianceInstance .
+# ```
+
+# Note that this ontology is not exhaustive and can be extended to include more classes and properties as needed. Also, the reuse of SAREF labels and terminology is clearly indicated in the comments.
+
+# Here are some key points to note:
+
+# *   The ontology defines classes for smart appliances, electric appliances, heating appliances, energy sources, power consumption, energy usage, smart meters, appliance status, control commands, remote control, and appliance instances.
+# *   The classes are organized in a hierarchical structure, with more specific classes inheriting from more general classes.
+# *   The ontology reuses labels and terminology from the SAREF ontology where possible, such as `Appliance`, `EnergySource`, `PowerConsumption`, and `ApplianceInstance`.
+# *   The ontology includes comments to provide additional context and explain the relationships between classes.
+
+# This ontology can be used as a starting point for building a more comprehensive ontology for smart appliances in the energy domain.

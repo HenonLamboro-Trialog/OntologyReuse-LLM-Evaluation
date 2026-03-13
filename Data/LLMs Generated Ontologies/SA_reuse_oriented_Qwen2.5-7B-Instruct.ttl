@@ -1,0 +1,62 @@
+# Certainly! Below is an example of an ontology in Turtle (TTL) format for smart appliances in the energy domain, reusing labels and terminology from the SAREF ontology where appropriate.
+
+# ```turtle
+@prefix : <http://example.org/smart-appliance/> .
+@prefix saref: <http://purl.org/saref/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Define the Smart Appliance class
+:SmartAppliance a rdfs:Class ;
+    rdfs:label "Smart Appliance" ;
+    rdfs:comment "A generic class for smart appliances in the energy domain." .
+
+# Define specific appliance classes
+:SmartLighting a :SmartAppliance ;
+    rdfs:label "Smart Lighting" ;
+    rdfs:comment "A smart appliance that controls lighting." .
+
+:SmartThermostat a :SmartAppliance ;
+    rdfs:label "Smart Thermostat" ;
+    rdfs:comment "A smart appliance that controls temperature." .
+
+:SmartPlug a :SmartAppliance ;
+    rdfs:label "Smart Plug" ;
+    rdfs:comment "A smart appliance that controls power to other devices." .
+
+# Reusing SAREF labels and terminology
+:SmartAppliance rdfs:subClassOf saref:Appliance ;
+    saref:hasControl saref:Control ;
+    saref:hasEnergyConsumption saref:EnergyConsumption .
+
+:SmartLighting rdfs:subClassOf :SmartAppliance ;
+    saref:hasLightingControl saref:LightingControl .
+
+:SmartThermostat rdfs:subClassOf :SmartAppliance ;
+    saref:hasThermostatControl saref:ThermostatControl .
+
+:SmartPlug rdfs:subClassOf :SmartAppliance ;
+    saref:hasPowerControl saref:PowerControl .
+
+# Example instances
+:SmartLight1 a :SmartLighting ;
+    rdfs:label "Smart Light 1" ;
+    saref:hasLightingControl [ a saref:LightingControl ;
+        saref:controlsLighting "Living Room Light" ] .
+
+:SmartThermostat1 a :SmartThermostat ;
+    rdfs:label "Smart Thermostat 1" ;
+    saref:hasThermostatControl [ a saref:ThermostatControl ;
+        saref:controlsThermostat "Living Room Thermostat" ] .
+
+:SmartPlug1 a :SmartPlug ;
+    rdfs:label "Smart Plug 1" ;
+    saref:hasPowerControl [ a saref:PowerControl ;
+        saref:controlsDevice "Coffee Maker" ] .
+# ```
+
+# ### Explanation:
+# 1. **Namespace Definition**: The `:SmartAppliance` class is defined with its label and comment. Specific appliance classes (`:SmartLighting`, `:SmartThermostat`, `:SmartPlug`) are subclasses of `:SmartAppliance`.
+# 2. **SAREF Reuse**: The `:SmartAppliance` class is defined to be a subclass of `saref:Appliance`. It also reuses `saref:hasControl`, `saref:hasEnergyConsumption`, `saref:LightingControl`, `saref:ThermostatControl`, and `saref:PowerControl` from the SAREF ontology.
+# 3. **Instances**: Example instances of `:SmartLighting`, `:SmartThermostat`, and `:SmartPlug` are provided, each with their respective controls.
+
+# This ontology can be extended further to include more specific properties and relationships as needed.

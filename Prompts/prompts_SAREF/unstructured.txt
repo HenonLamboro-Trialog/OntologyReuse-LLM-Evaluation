@@ -1,0 +1,1 @@
+Generate an ontology ttl file for smart-appliances in the energy domain. Include the concepts, relationships that you consider relevant.

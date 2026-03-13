@@ -1,0 +1,1 @@
+Generate an ontology ttl file for the IoT testbed domain where multiple testbeds own devices or applications that interact with sensors, store observations, and related data in proprietary formats. Include the concepts, relationships that you consider relevant.

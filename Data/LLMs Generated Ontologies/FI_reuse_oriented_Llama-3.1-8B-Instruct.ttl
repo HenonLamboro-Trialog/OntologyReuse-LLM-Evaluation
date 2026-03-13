@@ -1,0 +1,83 @@
+@prefix fiesta: <http://purl.org/iot/fiesta#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<> a owl:Ontology .
+
+# Classes
+<> rdfs:label "IoT Testbed Domain" .
+<> rdfs:comment "Ontology for the IoT testbed domain." .
+
+fiesta::Testbed a owl:Class ;
+  rdfs:label "Testbed" ;
+  rdfs:comment "A testbed is a controlled environment for testing and evaluating IoT devices and applications." ;
+  rdfs:subClassOf fiesta:Testbed .
+
+fiesta:Device a owl:Class ;
+  rdfs:label "Device" ;
+  rdfs:comment "A device is a physical entity that interacts with the environment and can be controlled or monitored." ;
+  rdfs:subClassOf fiesta:Device .
+
+fiesta:Sensor a owl:Class ;
+  rdfs:label "Sensor" ;
+  rdfs:comment "A sensor is a device that detects and measures physical or environmental parameters." ;
+  rdfs:subClassOf fiesta:Device .
+
+fiesta:Application a owl:Class ;
+  rdfs:label "Application" ;
+  rdfs:comment "An application is a software component that interacts with devices and sensors to provide a specific service or functionality." ;
+  rdfs:subClassOf fiesta:Application .
+
+fiesta:Observation a owl:Class ;
+  rdfs:label "Observation" ;
+  rdfs:comment "An observation is a measurement or reading taken from a sensor or device." ;
+  rdfs:subClassOf fiesta:Observation .
+
+# Properties
+fiesta:hasTestbed a owl:ObjectProperty ;
+  rdfs:label "has Testbed" ;
+  rdfs:comment "A device or application is associated with a testbed." ;
+  rdfs:domain fiesta:Device ;
+  rdfs:range fiesta:Testbed .
+
+fiesta:hasDevice a owl:ObjectProperty ;
+  rdfs:label "has Device" ;
+  rdfs:comment "A testbed or application is associated with a device." ;
+  rdfs:domain fiesta:Testbed ;
+  rdfs:range fiesta:Device .
+
+fiesta:hasSensor a owl:ObjectProperty ;
+  rdfs:label "has Sensor" ;
+  rdfs:comment "A device or application is associated with a sensor." ;
+  rdfs:domain fiesta:Device ;
+  rdfs:range fiesta:Sensor .
+
+fiesta:hasApplication a owl:ObjectProperty ;
+  rdfs:label "has Application" ;
+  rdfs:comment "A testbed or device is associated with an application." ;
+  rdfs:domain fiesta:Testbed ;
+  rdfs:range fiesta:Application .
+
+fiesta:hasObservation a owl:ObjectProperty ;
+  rdfs:label "has Observation" ;
+  rdfs:comment "A device or sensor is associated with an observation." ;
+  rdfs:domain fiesta:Device ;
+  rdfs:range fiesta:Observation .
+
+# Relationships
+<> rdfs:seeAlso <http://purl.org/iot/fiesta#> .
+
+# Reused labels from Fiesta-IoT ontology
+<> rdfs:seeAlso <http://purl.org/iot/fiesta#Testbed> .
+<> rdfs:seeAlso <http://purl.org/iot/fiesta#Device> .
+<> rdfs:seeAlso <http://purl.org/iot/fiesta#Application> .
+<> rdfs:seeAlso <http://purl.org/iot/fiesta#Observation> .
+# ```
+
+# This ontology defines the classes and properties for the IoT testbed domain. It reuses labels from the Fiesta-IoT ontology wherever possible, and creates new terms when necessary. The relationships between Testbeds, Devices, Sensors, Applications, and Observations are also defined.
+
+# Note that this is a simplified example, and you may need to add more properties and relationships depending on your specific use case. Additionally, you may want to consider using a more formal ontology language, such as OWL 2, for a more robust and expressive ontology.
+
+# Also, please note that the Fiesta-IoT ontology is not a real ontology, it's just an example of how to reuse labels from an existing ontology. You should replace it with the actual URL of the Fiesta-IoT ontology.

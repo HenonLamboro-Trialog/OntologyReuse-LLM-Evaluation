@@ -1,0 +1,3 @@
+Generate an ontology ttl file for the smart-appliances in the energy domain. 
+When possible, reuse labels and terminology from the SAREF ontology, especially for well-established appliance or energy-related concepts. 
+Prefer identical labels over inventing new ones. Clearly indicate where SAREF labels are reused.

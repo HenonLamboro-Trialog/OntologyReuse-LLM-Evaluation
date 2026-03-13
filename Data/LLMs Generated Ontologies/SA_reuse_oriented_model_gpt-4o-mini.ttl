@@ -1,0 +1,91 @@
+# Below is an example of an ontology in Turtle (TTL) format for smart appliances in the energy domain, reusing labels and terminology from the SAREF ontology where applicable. The SAREF ontology is designed for smart appliances and energy management, so we will leverage its concepts and properties.
+
+# ```ttl
+@prefix saref: <https://saref.etsi.org/core#> .
+@prefix saref_energy: <https://saref.etsi.org/core/energy#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+@prefix sa: <https://example.org/smart-appliance#> .
+
+### Ontology Declaration
+sa:SmartApplianceOntology a owl:Ontology ;
+    rdfs:label "Smart Appliance Ontology" ;
+    rdfs:comment "An ontology for smart appliances in the energy domain, reusing SAREF terminology." .
+
+### Classes
+sa:SmartAppliance a owl:Class ;
+    rdfs:subClassOf saref:Appliance ;
+    rdfs:label "Smart Appliance" ;
+    rdfs:comment "A device that can be controlled remotely and is capable of monitoring and managing energy consumption." .
+
+sa:SmartWashingMachine a owl:Class ;
+    rdfs:subClassOf sa:SmartAppliance ;
+    rdfs:label "Smart Washing Machine" ;
+    rdfs:comment "A washing machine that can be controlled remotely and optimizes energy usage." .
+
+sa:SmartRefrigerator a owl:Class ;
+    rdfs:subClassOf sa:SmartAppliance ;
+    rdfs:label "Smart Refrigerator" ;
+    rdfs:comment "A refrigerator that can be controlled remotely and monitors energy consumption." .
+
+sa:SmartThermostat a owl:Class ;
+    rdfs:subClassOf sa:SmartAppliance ;
+    rdfs:label "Smart Thermostat" ;
+    rdfs:comment "A thermostat that can be controlled remotely to optimize heating and cooling energy usage." .
+
+### Properties
+sa:hasEnergyConsumption a owl:ObjectProperty ;
+    rdfs:domain sa:SmartAppliance ;
+    rdfs:range saref_energy:EnergyConsumption ;
+    rdfs:label "has energy consumption" ;
+    rdfs:comment "Property indicating the energy consumption of the smart appliance." .
+
+sa:hasOperatingMode a owl:ObjectProperty ;
+    rdfs:domain sa:SmartAppliance ;
+    rdfs:range saref:OperatingMode ;
+    rdfs:label "has operating mode" ;
+    rdfs:comment "Property indicating the current operating mode of the smart appliance." .
+
+sa:hasStatus a owl:ObjectProperty ;
+    rdfs:domain sa:SmartAppliance ;
+    rdfs:range saref:Status ;
+    rdfs:label "has status" ;
+    rdfs:comment "Property indicating the operational status of the smart appliance." .
+
+sa:controlsEnergyUsage a owl:ObjectProperty ;
+    rdfs:domain sa:SmartAppliance ;
+    rdfs:range saref_energy:EnergyUsageControl ;
+    rdfs:label "controls energy usage" ;
+    rdfs:comment "Property indicating the capability of the smart appliance to control its energy usage." .
+
+### Instances
+sa:myWashingMachine a sa:SmartWashingMachine ;
+    rdfs:label "My Smart Washing Machine" ;
+    sa:hasEnergyConsumption [ a saref_energy:EnergyConsumption ; rdfs:label "1.5 kWh" ] ;
+    sa:hasOperatingMode [ a saref:OperatingMode ; rdfs:label "Eco Mode" ] ;
+    sa:hasStatus [ a saref:Status ; rdfs:label "Active" ] ;
+    sa:controlsEnergyUsage [ a saref_energy:EnergyUsageControl ; rdfs:label "Optimized for low energy" ] .
+
+sa:myRefrigerator a sa:SmartRefrigerator ;
+    rdfs:label "My Smart Refrigerator" ;
+    sa:hasEnergyConsumption [ a saref_energy:EnergyConsumption ; rdfs:label "0.8 kWh" ] ;
+    sa:hasOperatingMode [ a saref:OperatingMode ; rdfs:label "Normal Mode" ] ;
+    sa:hasStatus [ a saref:Status ; rdfs:label "Idle" ] ;
+    sa:controlsEnergyUsage [ a saref_energy:EnergyUsageControl ; rdfs:label "Energy Saver" ] .
+
+sa:myThermostat a sa:SmartThermostat ;
+    rdfs:label "My Smart Thermostat" ;
+    sa:hasEnergyConsumption [ a saref_energy:EnergyConsumption ; rdfs:label "0.05 kWh" ] ;
+    sa:hasOperatingMode [ a saref:OperatingMode ; rdfs:label "Heating Mode" ] ;
+    sa:hasStatus [ a saref:Status ; rdfs:label "Active" ] ;
+    sa:controlsEnergyUsage [ a saref_energy:EnergyUsageControl ; rdfs:label "Adaptive Control" ] .
+# ```
+
+# ### Explanation:
+# - The ontology defines a base class `SmartAppliance` that subclasses specific types of smart appliances like `SmartWashingMachine`, `SmartRefrigerator`, and `SmartThermostat`.
+# - Properties such as `hasEnergyConsumption`, `hasOperatingMode`, `hasStatus`, and `controlsEnergyUsage` are defined to capture relevant attributes of smart appliances.
+# - Instances of smart appliances are created to demonstrate how the ontology can be used in practice.
+# - SAREF classes and properties are reused wherever applicable, ensuring consistency with established terminology in the energy domain.
