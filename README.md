@@ -48,7 +48,7 @@ To reproduce the results:
 
 1. Clone the repository
 
-git clone https://github.com/HenonLamboro-Trialog/reuse-metrics-analysis.git
+git clone https://github.com/HenonLamboro-Trialog/OntologyReuse-LLM-Evaluation.git
 
 2. Install dependencies
 
