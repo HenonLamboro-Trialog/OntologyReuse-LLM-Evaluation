@@ -16,7 +16,7 @@ The framework evaluates reuse across the following dimensions:
 
 - **Lexical Reuse** – reuse of terminology and class labels from existing ontologies  
 - **Structural Reuse** – reuse of hierarchical structures and class relationships  
-- **Semantic Alignment** – alignment with concepts from reference ontologies  
+- **Semantic Reuse** – reuse of subclass relationships that maintain the conceptual meaning of classes
 - **Logical Consistency** – preservation of logical correctness and reasoning compatibility  
 - **Reuse Depth** – extent of axiomatic and structural reuse
 
