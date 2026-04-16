@@ -1,0 +1,123 @@
+# Certainly! Below is an ontology for the domain of IoT testbed, reusing existing ontologies and vocabularies where appropriate. The ontology is provided in Turtle (RDF) syntax.
+
+# ```turtle
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix fiesta: <http://www.example.org/fiesta-iot-ontology#> .
+@prefix iot: <http://www.example.org/iot-testbed-ontology#> .
+
+# Define the namespace for the IoT testbed ontology
+iot: a owl:Ontology ;
+    rdfs:label "IoT Testbed Ontology" ;
+    rdfs:seeAlso <http://www.example.org/fiesta-iot-ontology> .
+
+# Define classes
+iot:IoTTestbed a rdfs:Class ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A physical or virtual environment used for testing and validating IoT devices and systems." .
+
+iot:Device a rdfs:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "A physical or virtual entity that can be connected to the IoT network." .
+
+iot:Sensor a rdfs:Class ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that detects and measures physical properties and converts them into electrical signals." ;
+    rdfs:subClassOf iot:Device .
+
+iot:Actuator a rdfs:Class ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A device that performs actions based on input signals from the IoT network." ;
+    rdfs:subClassOf iot:Device .
+
+iot:Gateway a rdfs:Class ;
+    rdfs:label "Gateway" ;
+    rdfs:comment "A device that acts as a bridge between the IoT devices and the cloud or other networks." ;
+    rdfs:subClassOf iot:Device .
+
+# Define object properties
+iot:hasDevice a rdf:Property ;
+    rdfs:label "hasDevice" ;
+    rdfs:domain iot:IoTTestbed ;
+    rdfs:range iot:Device .
+
+iot:isConnectedTo a rdf:Property ;
+    rdfs:label "isConnectedTo" ;
+    rdfs:domain iot:Device ;
+    rdfs:range iot:Device .
+
+iot:isControlledBy a rdf:Property ;
+    rdfs:label "isControlledBy" ;
+    rdfs:domain iot:Actuator ;
+    rdfs:range iot:Device .
+
+# Define data properties
+iot:hasSensorType a rdf:Property ;
+    rdfs:label "hasSensorType" ;
+    rdfs:domain iot:Sensor ;
+    rdfs:range xsd:string .
+
+iot:hasActuatorType a rdf:Property ;
+    rdfs:label "hasActuatorType" ;
+    rdfs:domain iot:Actuator ;
+    rdfs:range xsd:string .
+
+# Align with existing ontology
+fiesta:hasSensor a rdf:Property ;
+    rdfs:label "hasSensor" ;
+    rdfs:domain iot:Device ;
+    rdfs:range iot:Sensor .
+
+fiesta:hasActuator a rdf:Property ;
+    rdfs:label "hasActuator" ;
+    rdfs:domain iot:Device ;
+    rdfs:range iot:Actuator .
+
+# Example instances
+iot:IoTTestbed1 a iot:IoTTestbed ;
+    rdfs:label "IoT Testbed 1" ;
+    iot:hasDevice iot:Device1 .
+
+iot:Device1 a iot:Device ;
+    rdfs:label "Device 1" ;
+    iot:hasSensorType "Temperature" ;
+    iot:hasActuatorType "Heater" .
+
+iot:Device2 a iot:Device ;
+    rdfs:label "Device 2" ;
+    iot:hasSensorType "Humidity" ;
+    iot:hasActuatorType "Ventilator" .
+
+iot:Device3 a iot:Device ;
+    rdfs:label "Device 3" ;
+    iot:hasSensorType "Light" ;
+    iot:hasActuatorType "Light Bulb" .
+
+# Example relationships
+iot:Device1 iot:isConnectedTo iot:Device2 .
+iot:Device2 iot:isControlledBy iot:Actuator1 .
+iot:Device3 iot:isControlledBy iot:Actuator2 .
+
+# Example sensor and actuator types
+fiesta:TemperatureSensor a iot:Sensor ;
+    rdfs:label "Temperature Sensor" .
+
+fiesta:Heater a iot:Actuator ;
+    rdfs:label "Heater" .
+
+fiesta:HumiditySensor a iot:Sensor ;
+    rdfs:label "Humidity Sensor" .
+
+fiesta:Ventilator a iot:Actuator ;
+    rdfs:label "Ventilator" .
+
+fiesta:LightSensor a iot:Sensor ;
+    rdfs:label "Light Sensor" .
+
+fiesta:LightBulb a iot:Actuator ;
+    rdfs:label "Light Bulb" .
+# ```
+
+# This ontology defines the core classes and properties for an IoT testbed, aligning with existing vocabularies where appropriate. It includes a clear class hierarchy and well-defined relationships, ensuring correctness and consistency.

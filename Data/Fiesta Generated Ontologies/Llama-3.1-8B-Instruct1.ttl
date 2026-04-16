@@ -1,0 +1,81 @@
+# **IoT Testbed Ontology**
+
+# **Reused Ontologies and Vocabularies:**
+
+# * Fiesta-IOT Ontology (http://fiesta-iot.org/ontology)
+# * Semantic Sensor Network Ontology (SSN) (http://www.w3.org/TR/vocab-ssn/)
+# * IoT-Lite Ontology (http://iot-lite.org/ontology)
+
+# **Ontology Definition:**
+
+# ```turtle
+@prefix iot: <http://example.org/iot#> .
+@prefix ssn: <http://www.w3.org/ns/ssn#> .
+@prefix fiesta: <http://fiesta-iot.org/ontology#> .
+@prefix iotlite: <http://iot-lite.org/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://example.org/iot#> .
+
+# <!-- Classes -->
+iot:IoTTestbed a ssn:ObservationSystem .
+iot:Device a ssn:Sensor .
+iot:SensorNode a iot:Device .
+iot:Gateway a iot:Device .
+iot:Application a ssn:Actuator .
+
+# <!-- Object Properties -->
+iot:hasDevice a ssn:hasComponent .
+iot:hasSensorNode a ssn:hasComponent .
+iot:hasGateway a ssn:hasComponent .
+iot:hasApplication a ssn:hasComponent .
+
+# <!-- Data Properties -->
+iot:deviceType a rdfs:Datatype .
+iot:sensorType a rdfs:Datatype .
+iot:gatewayType a rdfs:Datatype .
+iot:applicationType a rdfs:Datatype .
+
+# <!-- Property Alignments -->
+fiesta:DeviceType a iot:deviceType .
+fiesta:SensorType a iot:sensorType .
+fiesta:GatewayType a iot:gatewayType .
+fiesta:ApplicationType a iot:applicationType .
+
+# <!-- Class Hierarchy -->
+iot:IoTTestbed rdfs:subClassOf ssn:ObservationSystem .
+iot:Device rdfs:subClassOf ssn:Sensor .
+iot:SensorNode rdfs:subClassOf iot:Device .
+iot:Gateway rdfs:subClassOf iot:Device .
+iot:Application rdfs:subClassOf ssn:Actuator .
+
+# <!-- Instance Relationships -->
+:Testbed1 a iot:IoTTestbed ;
+  iot:hasDevice :Device1 ;
+  iot:hasSensorNode :SensorNode1 ;
+  iot:hasGateway :Gateway1 ;
+  iot:hasApplication :Application1 .
+
+:Device1 a iot:Device ;
+  fiesta:deviceType "Temperature Sensor" .
+
+:SensorNode1 a iot:SensorNode ;
+  fiesta:sensorType "Accelerometer" .
+
+:Gateway1 a iot:Gateway ;
+  fiesta:gatewayType "Wi-Fi" .
+
+:Application1 a iot:Application ;
+  fiesta:applicationType "Weather Forecasting" .
+# ```
+
+# **Explanation:**
+
+# This ontology defines the domain of IoT testbeds, reusing existing ontologies and vocabularies where possible. The classes `iot:IoTTestbed`, `iot:Device`, `iot:SensorNode`, `iot:Gateway`, and `iot:Application` are defined, along with their relationships and properties.
+
+# The `iot:hasDevice`, `iot:hasSensorNode`, `iot:hasGateway`, and `iot:hasApplication` object properties are used to relate an IoT testbed to its components. The `iot:deviceType`, `iot:sensorType`, `iot:gatewayType`, and `iot:applicationType` data properties are used to describe the types of devices, sensors, gateways, and applications in the testbed.
+
+# The ontology also includes property alignments with the Fiesta-IOT Ontology, which provides a mapping between the reused classes and properties. The class hierarchy is defined, with `iot:IoTTestbed` being a subclass of `ssn:ObservationSystem`, and `iot:Device` being a subclass of `ssn:Sensor`.
+
+# Finally, instance relationships are defined to illustrate the usage of the ontology. The `:Testbed1` instance is an example of an IoT testbed with multiple devices, sensor nodes, gateways, and applications. The `:Device1`, `:SensorNode1`, `:Gateway1`, and `:Application1` instances are examples of devices, sensor nodes, gateways, and applications, respectively, with their corresponding types.

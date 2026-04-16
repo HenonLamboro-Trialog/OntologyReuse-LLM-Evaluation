@@ -1,0 +1,126 @@
+# **IoT Testbed Ontology**
+
+# **Reused Ontologies and Vocabularies**
+
+# *   **Fiesta-IOT Ontology**: Reused for device and network-related concepts
+# *   **Semantic Sensor Network (SSN) Ontology**: Reused for sensor-related concepts
+# *   **Smart Data Models (SDM)**: Reused for data-related concepts
+
+# **Ontology Definition**
+
+# ```turtle
+@prefix iot: <http://example.org/iot#> .
+@prefix iots: <http://iot-testbed.org/ontology#> .
+@prefix fiesta: <http://example.org/fiesta-iot#> .
+@prefix ssn: <http://www.w3.org/ns/sensor#> .
+@prefix sdm: <http://example.org/smart-data-models#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# <!-- Classes -->
+iots:Testbed a rdfs:Class ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A testbed for IoT devices and networks" .
+
+iots:Device a rdfs:Class ;
+    rdfs:label "IoT Device" ;
+    rdfs:comment "A device in the IoT testbed" .
+    # fiesta:device a ssn:Sensor ;
+    # ssn:hasObservation a sdm:Observation .
+
+iots:Network a rdfs:Class ;
+    rdfs:label "IoT Network" ;
+    rdfs:comment "A network in the IoT testbed" .
+    # fiesta:network a ssn:Sensor ;
+    #     ssn:hasObservation sdm:Observation .
+
+iots:Sensor a rdfs:Class ;
+    rdfs:label "IoT Sensor" ;
+    rdfs:comment "A sensor in the IoT testbed" .
+    # ssn:Sensor a ssn:ObservingSystem ;
+    #     ssn:observes sdm:Observation .
+
+iots:Actuator a rdfs:Class ;
+    rdfs:label "IoT Actuator" ;
+    rdfs:comment "An actuator in the IoT testbed" .
+    # ssn:Actuator a ssn:ActuatingSystem ;
+    #     ssn:actsOn sdm:Action .
+
+# <!-- Object Properties -->
+iots:hasDevice a rdf:Property ;
+    rdfs:label "has device" ;
+    rdfs:comment "A testbed has one or more devices" ;
+    rdfs:domain iots:Testbed ;
+    rdfs:range iots:Device .
+
+iots:hasNetwork a rdf:Property ;
+    rdfs:label "has network" ;
+    rdfs:comment "A testbed has one or more networks" ;
+    rdfs:domain iots:Testbed ;
+    rdfs:range iots:Network .
+
+iots:hasSensor a rdf:Property ;
+    rdfs:label "has sensor" ;
+    rdfs:comment "A device or network has one or more sensors" ;
+    rdfs:domain iots:Device, iots:Network ;
+    rdfs:range iots:Sensor .
+
+iots:hasActuator a rdf:Property ;
+    rdfs:label "has actuator" ;
+    rdfs:comment "A device or network has one or more actuators" ;
+    rdfs:domain iots:Device, iots:Network ;
+    rdfs:range iots:Actuator .
+
+# <!-- Data Properties -->
+iots:deviceID a rdf:Property ;
+    rdfs:label "device ID" ;
+    rdfs:comment "The ID of the device" ;
+    rdfs:domain iots:Device ;
+    rdfs:range rdf:Literal .
+
+iots:networkID a rdf:Property ;
+    rdfs:label "network ID" ;
+    rdfs:comment "The ID of the network" ;
+    rdfs:domain iots:Network ;
+    rdfs:range rdf:Literal .
+
+iots:sensorID a rdf:Property ;
+    rdfs:label "sensor ID" ;
+    rdfs:comment "The ID of the sensor" ;
+    rdfs:domain iots:Sensor ;
+    rdfs:range rdf:Literal .
+
+iots:actuatorID a rdf:Property ;
+    rdfs:label "actuator ID" ;
+    rdfs:comment "The ID of the actuator" ;
+    rdfs:domain iots:Actuator ;
+    rdfs:range rdf:Literal .
+# ```
+
+# **Explanation**
+
+# This ontology defines the classes, object properties, and data properties for an IoT testbed. It reuses existing ontologies and vocabularies, such as Fiesta-IOT, SSN, and SDM, to ensure consistency and avoid redundancy.
+
+# The classes defined in this ontology are:
+
+# *   `iots:Testbed`: A testbed for IoT devices and networks.
+# *   `iots:Device`: A device in the IoT testbed.
+# *   `iots:Network`: A network in the IoT testbed.
+# *   `iots:Sensor`: A sensor in the IoT testbed.
+# *   `iots:Actuator`: An actuator in the IoT testbed.
+
+# The object properties defined in this ontology are:
+
+# *   `iots:hasDevice`: A testbed has one or more devices.
+# *   `iots:hasNetwork`: A testbed has one or more networks.
+# *   `iots:hasSensor`: A device or network has one or more sensors.
+# *   `iots:hasActuator`: A device or network has one or more actuators.
+
+# The data properties defined in this ontology are:
+
+# *   `iots:deviceID`: The ID of the device.
+# *   `iots:networkID`: The ID of the network.
+# *   `iots:sensorID`: The ID of the sensor.
+# *   `iots:actuatorID`: The ID of the actuator.
+
+# This ontology provides a clear and consistent representation of the concepts and relationships in an IoT testbed, making it easier to reason about and query the data.

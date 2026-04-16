@@ -1,0 +1,145 @@
+# **IoT Testbed Ontology**
+# ==========================
+
+# **Introduction**
+# ---------------
+
+# This ontology defines a conceptual model for the domain of IoT testbeds, reusing existing ontologies, vocabularies, and standards whenever possible. The goal is to provide a clear and well-defined representation of IoT testbeds, their components, and their relationships.
+
+# **Reuse Strategy**
+# ------------------
+
+# This ontology reuses the following existing ontologies, vocabularies, and standards:
+
+# *   **Fiesta-IOT Ontology**: Reused for device and network-related concepts.
+# *   **Semantic Sensor Network (SSN) Ontology**: Reused for sensor-related concepts.
+# *   **Resource Description Framework (RDF) Schema**: Reused for basic data types and properties.
+
+# **Ontology Definition**
+# ----------------------
+
+# ### Classes
+
+# ```turtle
+@prefix iota: <http://example.org/iot#> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix fiesta: <http://fiesta-iot.org/ontology#> .
+
+iota:IoTTestbed a rdfs:Class ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A testbed for IoT devices and networks." .
+
+iota:Device a rdfs:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "A device in the IoT testbed." ;
+    ssn:hasProperty ssn:observes .
+
+iota:Network a rdfs:Class ;
+    rdfs:label "Network" ;
+    rdfs:comment "A network in the IoT testbed." ;
+    ssn:hasProperty ssn:connects .
+
+iota:Sensor a rdfs:Class ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A sensor in the IoT testbed." ;
+    ssn:hasProperty ssn:observes .
+
+iota:Actuator a rdfs:Class ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "An actuator in the IoT testbed." ;
+    ssn:hasProperty ssn:controls .
+
+iota:Gateway a rdfs:Class ;
+    rdfs:label "Gateway" ;
+    rdfs:comment "A gateway in the IoT testbed." ;
+    ssn:hasProperty ssn:connects .
+# ```
+
+# ### Object Properties
+
+# ```turtle
+iota:hasDevice a rdf:Property ;
+    rdfs:label "has device" ;
+    rdfs:comment "A device in the IoT testbed." ;
+    rdfs:domain iota:IoTTestbed ;
+    rdfs:range iota:Device .
+
+iota:hasNetwork a rdf:Property ;
+    rdfs:label "has network" ;
+    rdfs:comment "A network in the IoT testbed." ;
+    rdfs:domain iota:IoTTestbed ;
+    rdfs:range iota:Network .
+
+iota:hasSensor a rdf:Property ;
+    rdfs:label "has sensor" ;
+    rdfs:comment "A sensor in the IoT testbed." ;
+    rdfs:domain iota:IoTTestbed ;
+    rdfs:range iota:Sensor .
+
+iota:hasActuator a rdf:Property ;
+    rdfs:label "has actuator" ;
+    rdfs:comment "An actuator in the IoT testbed." ;
+    rdfs:domain iota:IoTTestbed ;
+    rdfs:range iota:Actuator .
+
+iota:hasGateway a rdf:Property ;
+    rdfs:label "has gateway" ;
+    rdfs:comment "A gateway in the IoT testbed." ;
+    rdfs:domain iota:IoTTestbed ;
+    rdfs:range iota:Gateway .
+# ```
+
+# ### Data Properties
+
+# ```turtle
+iota:deviceID a rdf:Property ;
+    rdfs:label "device ID" ;
+    rdfs:comment "The ID of the device." ;
+    rdfs:domain iota:Device ;
+    rdfs:range rdf:XMLLiteral .
+
+iota:networkID a rdf:Property ;
+    rdfs:label "network ID" ;
+    rdfs:comment "The ID of the network." ;
+    rdfs:domain iota:Network ;
+    rdfs:range rdf:XMLLiteral .
+
+iota:sensorID a rdf:Property ;
+    rdfs:label "sensor ID" ;
+    rdfs:comment "The ID of the sensor." ;
+    rdfs:domain iota:Sensor ;
+    rdfs:range rdf:XMLLiteral .
+
+iota:actuatorID a rdf:Property ;
+    rdfs:label "actuator ID" ;
+    rdfs:comment "The ID of the actuator." ;
+    rdfs:domain iota:Actuator ;
+    rdfs:range rdf:XMLLiteral .
+
+iota:gatewayID a rdf:Property ;
+    rdfs:label "gateway ID" ;
+    rdfs:comment "The ID of the gateway." ;
+    rdfs:domain iota:Gateway ;
+    rdfs:range rdf:XMLLiteral .
+# ```
+
+# ### Mapping to Fiesta-IOT Ontology
+
+# ```turtle
+iota:Device rdfs:subClassOf fiesta:Device .
+iota:Network rdfs:subClassOf fiesta:Network .
+iota:Sensor rdfs:subClassOf fiesta:Sensor .
+iota:Actuator rdfs:subClassOf fiesta:Actuator .
+iota:Gateway rdfs:subClassOf fiesta:Gateway .
+# # ```
+
+# # ### Mapping to SSN Ontology
+
+# # ```turtle
+# iota:Sensor rdfs:subClassOf ssn:Sensor .
+# iota:Actuator rdfs:subClassOf ssn:Actuator .
+# ```
+
+# This ontology provides a clear and well-defined representation of IoT testbeds, their components, and their relationships. It reuses existing ontologies, vocabularies, and standards whenever possible, ensuring correctness and consistency of reused terms.

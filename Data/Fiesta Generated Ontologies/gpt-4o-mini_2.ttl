@@ -1,0 +1,112 @@
+# Creating an ontology for the domain of IoT testbeds involves defining classes, properties, and relationships that accurately represent the concepts and entities within this domain. Below is a Turtle (RDF) representation of an IoT testbed ontology that reuses existing ontologies, particularly the Fiesta-IoT Ontology, and adheres to the modeling requirements specified.
+
+# ```turtle
+@prefix : <http://example.org/iot-testbed#> .
+@prefix fi: <http://www.fiesta-iot.eu/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Ontology Declaration
+<http://example.org/iot-testbed> rdf:type owl:Ontology .
+
+# Classes
+:IoTTestbed rdf:type owl:Class ;
+    rdfs:subClassOf fi:Testbed ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A testbed specifically designed for Internet of Things (IoT) experiments." .
+
+:Device rdf:type owl:Class ;
+    rdfs:subClassOf fi:Device ;
+    rdfs:label "Device" ;
+    rdfs:comment "A physical or virtual device used in the IoT testbed." .
+
+:Sensor rdf:type owl:Class ;
+    rdfs:subClassOf :Device ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that detects and measures physical properties." .
+
+:Actuator rdf:type owl:Class ;
+    rdfs:subClassOf :Device ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A device that performs actions based on received commands." .
+
+:Experiment rdf:type owl:Class ;
+    rdfs:subClassOf fi:Experiment ;
+    rdfs:label "Experiment" ;
+    rdfs:comment "An experiment conducted within the IoT testbed." .
+
+:Data rdf:type owl:Class ;
+    rdfs:subClassOf fi:Data ;
+    rdfs:label "Data" ;
+    rdfs:comment "Data generated or collected during experiments." .
+
+# Object Properties
+:hasDevice rdf:type owl:ObjectProperty ;
+    rdfs:domain :IoTTestbed ;
+    rdfs:range :Device ;
+    rdfs:label "has device" ;
+    rdfs:comment "Links an IoT testbed to the devices it contains." .
+
+:conductsExperiment rdf:type owl:ObjectProperty ;
+    rdfs:domain :IoTTestbed ;
+    rdfs:range :Experiment ;
+    rdfs:label "conducts experiment" ;
+    rdfs:comment "Links an IoT testbed to the experiments conducted within it." .
+
+:generatesData rdf:type owl:ObjectProperty ;
+    rdfs:domain :Experiment ;
+    rdfs:range :Data ;
+    rdfs:label "generates data" ;
+    rdfs:comment "Links an experiment to the data it generates." .
+
+# Data Properties
+:hasLocation rdf:type owl:DatatypeProperty ;
+    rdfs:domain :IoTTestbed ;
+    rdfs:range xsd:string ;
+    rdfs:label "has location" ;
+    rdfs:comment "The physical location of the IoT testbed." .
+
+:hasStartTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Experiment ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "has start time" ;
+    rdfs:comment "The start time of the experiment." .
+
+:hasEndTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Experiment ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "has end time" ;
+    rdfs:comment "The end time of the experiment." .
+
+# Example Instances
+:Testbed1 rdf:type :IoTTestbed ;
+    :hasLocation "Building A, Floor 2" ;
+    :hasDevice :Sensor1, :Actuator1 ;
+    :conductsExperiment :Experiment1 .
+
+:Sensor1 rdf:type :Sensor ;
+    rdfs:label "Temperature Sensor" .
+
+:Actuator1 rdf:type :Actuator ;
+    rdfs:label "Fan Actuator" .
+
+:Experiment1 rdf:type :Experiment ;
+    :hasStartTime "2023-10-01T10:00:00"^^xsd:dateTime ;
+    :hasEndTime "2023-10-01T12:00:00"^^xsd:dateTime ;
+    :generatesData :Data1 .
+
+:Data1 rdf:type :Data ;
+    rdfs:label "Temperature Data" .
+
+# ```
+
+# ### Explanation:
+# - **Classes**: The ontology defines several classes relevant to IoT testbeds, including `IoTTestbed`, `Device`, `Sensor`, `Actuator`, `Experiment`, and `Data`. These classes are structured to reflect a hierarchy, with `Device` as a superclass for `Sensor` and `Actuator`.
+# - **Object Properties**: Properties like `hasDevice`, `conductsExperiment`, and `generatesData` establish relationships between the classes.
+# - **Data Properties**: Properties such as `hasLocation`, `hasStartTime`, and `hasEndTime` provide additional information about the instances of the classes.
+# - **Reuse of Existing Ontologies**: The ontology reuses classes and properties from the Fiesta-IoT Ontology where applicable, ensuring consistency and avoiding redundancy.
+# - **Instances**: Example instances are provided to illustrate how the classes and properties can be utilized in practice.
+
+# This ontology can be expanded further based on specific requirements or additional concepts relevant to IoT testbeds.

@@ -1,0 +1,91 @@
+# Certainly! Below is an ontology for the domain of IoT testbed, reusing existing elements from the Fiesta-IOT Ontology and other relevant standards. The ontology is provided in Turtle (RDF) syntax.
+
+# ```turtle
+@prefix fiesta-iot: <http://www.example.org/fiesta-iot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Define the namespace for the IoT testbed ontology
+fiesta-iot:iotTestbed a owl:Ontology ;
+    rdfs:label "IoT Testbed Ontology" ;
+    rdfs:seeAlso <http://www.example.org/fiesta-iot> .
+
+# Classes
+fiesta-iot:IoTTestbed a owl:Class ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A physical or virtual environment used for testing and validating IoT devices, systems, and applications." .
+
+fiesta-iot:Device a owl:Class ;
+    rdfs:subClassOf fiesta-iot:Entity ;
+    rdfs:label "Device" ;
+    rdfs:comment "A physical or virtual entity that can be connected to the IoT testbed." .
+
+fiesta-iot:Sensor a owl:Class ;
+    rdfs:subClassOf fiesta-iot:Device ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that measures and reports environmental or operational data." .
+
+fiesta-iot:Actuator a owl:Class ;
+    rdfs:subClassOf fiesta-iot:Device ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A device that performs actions based on input signals." .
+
+fiesta-iot:Gateway a owl:Class ;
+    rdfs:subClassOf fiesta-iot:Device ;
+    rdfs:label "Gateway" ;
+    rdfs:comment "A device that acts as a bridge between different IoT devices and networks." .
+
+# Object Properties
+fiesta-iot:isPartOf a owl:ObjectProperty ;
+    rdfs:label "isPartOf" ;
+    rdfs:domain fiesta-iot:IoTTestbed ;
+    rdfs:range fiesta-iot:Device ;
+    rdfs:comment "Indicates that a device is part of an IoT testbed." .
+
+fiesta-iot:connectsTo a owl:ObjectProperty ;
+    rdfs:label "connectsTo" ;
+    rdfs:domain fiesta-iot:Device ;
+    rdfs:range fiesta-iot:Device ;
+    rdfs:comment "Indicates a connection between two devices within the IoT testbed." .
+
+# Data Properties
+fiesta-iot:hasType a owl:DatatypeProperty ;
+    rdfs:label "hasType" ;
+    rdfs:domain fiesta-iot:Device ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the type of the device (e.g., sensor, actuator, gateway)." .
+
+fiesta-iot:hasLocation a owl:DatatypeProperty ;
+    rdfs:label "hasLocation" ;
+    rdfs:domain fiesta-iot:Device ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the physical or virtual location of the device within the IoT testbed." .
+
+fiesta-iot:hasStatus a owl:DatatypeProperty ;
+    rdfs:label "hasStatus" ;
+    rdfs:domain fiesta-iot:Device ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Indicates the operational status of the device (e.g., online, offline, malfunctioning)." .
+
+# Example instances
+fiesta-iot:testbed1 a fiesta-iot:IoTTestbed ;
+    rdfs:label "Testbed 1" ;
+    fiesta-iot:hasLocation "Room 101" .
+
+fiesta-iot:device1 a fiesta-iot:Sensor ;
+    rdfs:label "Sensor 1" ;
+    fiesta-iot:hasType "Temperature Sensor" ;
+    fiesta-iot:hasLocation "Room 101" ;
+    fiesta-iot:isPartOf fiesta-iot:testbed1 .
+
+fiesta-iot:device2 a fiesta-iot:Actuator ;
+    rdfs:label "Actuator 1" ;
+    fiesta-iot:hasType "Heating Actuator" ;
+    fiesta-iot:hasLocation "Room 101" ;
+    fiesta-iot:isPartOf fiesta-iot:testbed1 ;
+    fiesta-iot:connectsTo fiesta-iot:device1 .
+# ```
+
+# This ontology defines the core classes and properties for an IoT testbed, reusing elements from the Fiesta-IOT Ontology where appropriate. It includes classes for IoT testbed, devices, sensors, actuators, and gateways, as well as object and data properties to describe relationships and attributes.

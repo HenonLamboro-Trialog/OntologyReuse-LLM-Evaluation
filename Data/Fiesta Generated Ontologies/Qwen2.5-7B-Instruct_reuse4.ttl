@@ -1,0 +1,137 @@
+# Certainly! Below is an ontology for the domain of IoT testbed, reusing elements from the Fiesta-IOT Ontology where appropriate. The ontology is provided in Turtle (RDF) syntax.
+
+# ```turtle
+@prefix fiesta: <http://www.example.org/fiesta-iot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Define the namespace for the IoT testbed ontology
+fiesta:iotTestbed a owl:Ontology ;
+    rdfs:label "IoT Testbed Ontology" ;
+    rdfs:comment "Ontology for defining classes and properties related to IoT testbeds" .
+
+# Reuse existing classes and properties from Fiesta-IOT Ontology
+fiesta:Device a owl:Class ;
+    rdfs:subClassOf fiesta:Entity ;
+    rdfs:label "Device" ;
+    rdfs:comment "Represents a physical or virtual device in the IoT environment" .
+
+fiesta:Sensor a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "Represents a device that measures or detects physical phenomena" .
+
+fiesta:Actuator a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "Represents a device that performs actions based on input signals" .
+
+fiesta:Testbed a owl:Class ;
+    rdfs:subClassOf fiesta:System ;
+    rdfs:label "Testbed" ;
+    rdfs:comment "Represents a collection of devices, sensors, and actuators for testing purposes" .
+
+fiesta:TestbedComponent a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Testbed Component" ;
+    rdfs:comment "Represents a component within a testbed, which can be a device, sensor, or actuator" .
+
+fiesta:TestbedConfiguration a owl:Class ;
+    rdfs:subClassOf fiesta:Configuration ;
+    rdfs:label "Testbed Configuration" ;
+    rdfs:comment "Represents the configuration settings of a testbed" .
+
+fiesta:TestbedScenario a owl:Class ;
+    rdfs:subClassOf fiesta:Scenario ;
+    rdfs:label "Testbed Scenario" ;
+    rdfs:comment "Represents a specific scenario or test case defined for a testbed" .
+
+# Define new classes and properties
+fiesta:IoTTestbed a owl:Class ;
+    rdfs:subClassOf fiesta:Testbed ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "Represents a specific IoT testbed environment" .
+
+fiesta:IoTTestbedComponent a owl:Class ;
+    rdfs:subClassOf fiesta:TestbedComponent ;
+    rdfs:label "IoT Testbed Component" ;
+    rdfs:comment "Represents a component within an IoT testbed, which can be a device, sensor, or actuator" .
+
+fiesta:IoTTestbedConfiguration a owl:Class ;
+    rdfs:subClassOf fiesta:TestbedConfiguration ;
+    rdfs:label "IoT Testbed Configuration" ;
+    rdfs:comment "Represents the configuration settings of an IoT testbed" .
+
+fiesta:IoTTestbedScenario a owl:Class ;
+    rdfs:subClassOf fiesta:TestbedScenario ;
+    rdfs:label "IoT Testbed Scenario" ;
+    rdfs:comment "Represents a specific scenario or test case defined for an IoT testbed" .
+
+# Define object properties
+fiesta:hasComponent a owl:ObjectProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range fiesta:IoTTestbedComponent ;
+    rdfs:label "hasComponent" ;
+    rdfs:comment "Indicates that a testbed has a specific component" .
+
+fiesta:hasConfiguration a owl:ObjectProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range fiesta:IoTTestbedConfiguration ;
+    rdfs:label "hasConfiguration" ;
+    rdfs:comment "Indicates that a testbed has a specific configuration" .
+
+fiesta:hasScenario a owl:ObjectProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range fiesta:IoTTestbedScenario ;
+    rdfs:label "hasScenario" ;
+    rdfs:comment "Indicates that a testbed has a specific scenario" .
+
+# Define data properties
+fiesta:hasName a owl:DatatypeProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasName" ;
+    rdfs:comment "Indicates the name of the testbed" .
+
+fiesta:hasDescription a owl:DatatypeProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasDescription" ;
+    rdfs:comment "Indicates a description of the testbed" .
+
+fiesta:hasLocation a owl:DatatypeProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasLocation" ;
+    rdfs:comment "Indicates the physical location of the testbed" .
+
+# Example instances
+fiesta:IoTTestbed1 a fiesta:IoTTestbed ;
+    fiesta:hasName "Smart City Testbed" ;
+    fiesta:hasDescription "A testbed for smart city applications" ;
+    fiesta:hasLocation "City Hall, Downtown" ;
+    fiesta:hasComponent fiesta:Sensor1 ;
+    fiesta:hasComponent fiesta:Actuator1 ;
+    fiesta:hasConfiguration fiesta:Configuration1 ;
+    fiesta:hasScenario fiesta:Scenario1 .
+
+fiesta:Sensor1 a fiesta:Sensor ;
+    fiesta:hasName "Temperature Sensor" ;
+    fiesta:hasDescription "Monitors temperature in the testbed" .
+
+fiesta:Actuator1 a fiesta:Actuator ;
+    fiesta:hasName "Light Actuator" ;
+    fiesta:hasDescription "Controls lighting in the testbed" .
+
+fiesta:Configuration1 a fiesta:IoTTestbedConfiguration ;
+    fiesta:hasName "Testbed Configuration 1" ;
+    fiesta:hasDescription "Default configuration for the testbed" .
+
+fiesta:Scenario1 a fiesta:IoTTestbedScenario ;
+    fiesta:hasName "Smart Lighting Scenario" ;
+    fiesta:hasDescription "Scenario for testing smart lighting functionality" .
+# ```
+
+# This ontology reuses existing classes and properties from the Fiesta-IOT Ontology and extends it with new classes and properties specific to IoT testbeds. The example instances demonstrate how the classes and properties can be used to describe an IoT testbed.

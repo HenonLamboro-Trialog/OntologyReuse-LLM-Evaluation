@@ -1,0 +1,170 @@
+# ```turtle
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix iot-lite: <http://purl.oclc.org/NET/UNIS/fiware/iot-lite#> .
+@prefix fiesta: <http://purl.oclc.org/NET/FIESTA-IOT#> .
+@prefix iottest: <http://example.org/iottestbed#> .
+
+#################################################################
+# Ontology: IoT Testbed
+#################################################################
+
+iottest:IoTTestbed a owl:Class ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A controlled environment for testing IoT devices, applications, and services." .
+
+iottest:TestbedNode a owl:Class ;
+    rdfs:label "Testbed Node" ;
+    rdfs:subClassOf fiesta:Node ;
+    rdfs:comment "A physical or virtual node in an IoT testbed." .
+
+iottest:TestbedDevice a owl:Class ;
+    rdfs:label "Testbed Device" ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:comment "A device deployed in the testbed." .
+
+iottest:TestbedSensor a owl:Class ;
+    rdfs:label "Testbed Sensor" ;
+    rdfs:subClassOf fiesta:Sensor ;
+    rdfs:comment "A sensor deployed in the testbed." .
+
+iottest:TestbedActuator a owl:Class ;
+    rdfs:label "Testbed Actuator" ;
+    rdfs:subClassOf fiesta:Actuator ;
+    rdfs:comment "An actuator deployed in the testbed." .
+
+iottest:TestbedService a owl:Class ;
+    rdfs:label "Testbed Service" ;
+    rdfs:subClassOf fiesta:Service ;
+    rdfs:comment "A software service provided by the testbed." .
+
+iottest:TestScenario a owl:Class ;
+    rdfs:label "Test Scenario" ;
+    rdfs:comment "A scenario or experiment executed in the testbed." .
+
+iottest:TestbedUser a owl:Class ;
+    rdfs:label "Testbed User" ;
+    rdfs:subClassOf fiesta:User ;
+    rdfs:comment "A user of the IoT testbed." .
+
+iottest:TestbedLocation a owl:Class ;
+    rdfs:label "Testbed Location" ;
+    rdfs:subClassOf fiesta:Location ;
+    rdfs:comment "A physical or virtual location within the testbed." .
+
+#################################################################
+# Object Properties
+#################################################################
+
+iottest:hasNode a owl:ObjectProperty ;
+    rdfs:label "has node" ;
+    rdfs:domain iottest:IoTTestbed ;
+    rdfs:range iottest:TestbedNode ;
+    rdfs:subPropertyOf fiesta:hasNode ;
+    rdfs:comment "Relates a testbed to its nodes." .
+
+iottest:hasDevice a owl:ObjectProperty ;
+    rdfs:label "has device" ;
+    rdfs:domain iottest:TestbedNode ;
+    rdfs:range iottest:TestbedDevice ;
+    rdfs:subPropertyOf fiesta:hasDevice ;
+    rdfs:comment "Relates a node to its devices." .
+
+iottest:hasSensor a owl:ObjectProperty ;
+    rdfs:label "has sensor" ;
+    rdfs:domain iottest:TestbedDevice ;
+    rdfs:range iottest:TestbedSensor ;
+    rdfs:subPropertyOf fiesta:hasSensor ;
+    rdfs:comment "Relates a device to its sensors." .
+
+iottest:hasActuator a owl:ObjectProperty ;
+    rdfs:label "has actuator" ;
+    rdfs:domain iottest:TestbedDevice ;
+    rdfs:range iottest:TestbedActuator ;
+    rdfs:subPropertyOf fiesta:hasActuator ;
+    rdfs:comment "Relates a device to its actuators." .
+
+iottest:providesService a owl:ObjectProperty ;
+    rdfs:label "provides service" ;
+    rdfs:domain iottest:IoTTestbed ;
+    rdfs:range iottest:TestbedService ;
+    rdfs:subPropertyOf fiesta:hasService ;
+    rdfs:comment "Relates a testbed to the services it provides." .
+
+iottest:hasScenario a owl:ObjectProperty ;
+    rdfs:label "has scenario" ;
+    rdfs:domain iottest:IoTTestbed ;
+    rdfs:range iottest:TestScenario ;
+    rdfs:comment "Relates a testbed to its test scenarios." .
+
+iottest:hasUser a owl:ObjectProperty ;
+    rdfs:label "has user" ;
+    rdfs:domain iottest:IoTTestbed ;
+    rdfs:range iottest:TestbedUser ;
+    rdfs:subPropertyOf fiesta:hasUser ;
+    rdfs:comment "Relates a testbed to its users." .
+
+iottest:locatedAt a owl:ObjectProperty ;
+    rdfs:label "located at" ;
+    rdfs:domain iottest:TestbedNode ;
+    rdfs:range iottest:TestbedLocation ;
+    rdfs:subPropertyOf fiesta:locatedAt ;
+    rdfs:comment "Specifies the location of a node within the testbed." .
+
+iottest:involvedInScenario a owl:ObjectProperty ;
+    rdfs:label "involved in scenario" ;
+    rdfs:domain iottest:TestbedDevice ;
+    rdfs:range iottest:TestScenario ;
+    rdfs:comment "Indicates that a device is involved in a test scenario." .
+
+#################################################################
+# Data Properties
+#################################################################
+
+iottest:testbedName a owl:DatatypeProperty ;
+    rdfs:label "testbed name" ;
+    rdfs:domain iottest:IoTTestbed ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the IoT testbed." .
+
+iottest:scenarioDescription a owl:DatatypeProperty ;
+    rdfs:label "scenario description" ;
+    rdfs:domain iottest:TestScenario ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A textual description of the test scenario." .
+
+iottest:nodeIPAddress a owl:DatatypeProperty ;
+    rdfs:label "node IP address" ;
+    rdfs:domain iottest:TestbedNode ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The IP address of the testbed node." .
+
+iottest:deviceID a owl:DatatypeProperty ;
+    rdfs:label "device ID" ;
+    rdfs:domain iottest:TestbedDevice ;
+    rdfs:range xsd:string ;
+    rdfs:comment "A unique identifier for the testbed device." .
+
+iottest:userEmail a owl:DatatypeProperty ;
+    rdfs:label "user email" ;
+    rdfs:domain iottest:TestbedUser ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The email address of the testbed user." .
+
+#################################################################
+# Alignment with FIESTA-IoT Ontology
+#################################################################
+
+# Reuse of FIESTA-IoT classes and properties is indicated via subClassOf and subPropertyOf above.
+# For example, TestbedDevice is a subclass of fiesta:Device, and hasDevice is a subproperty of fiesta:hasDevice.
+
+#################################################################
+# End of Ontology
+#################################################################
+# ```
+# **Notes:**
+# - All classes and properties are aligned with [FIESTA-IoT ontology](http://purl.oclc.org/NET/FIESTA-IOT#) where possible.
+# - New terms are only introduced where no suitable FIESTA-IoT term exists.
+# - The ontology is modular and extensible for further IoT testbed-specific concepts.

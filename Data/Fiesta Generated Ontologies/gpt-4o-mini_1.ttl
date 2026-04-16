@@ -1,0 +1,117 @@
+# Creating an ontology for the domain of IoT testbeds involves defining classes, properties, and relationships while reusing existing ontologies where applicable. Below is a Turtle (RDF) representation of an IoT testbed ontology that incorporates elements from the Fiesta-IOT Ontology and other relevant vocabularies.
+
+# ```turtle
+@prefix : <http://example.org/iot-testbed#> .
+@prefix fi: <http://www.fiesta-iot.eu/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Ontology Declaration
+<http://example.org/iot-testbed>
+    rdf:type owl:Ontology ;
+    rdfs:label "IoT Testbed Ontology" ;
+    rdfs:comment "An ontology for representing IoT testbeds, their components, and relationships." .
+
+# Classes
+:Testbed rdf:type owl:Class ;
+    rdfs:label "Testbed" ;
+    rdfs:comment "A physical or virtual environment for testing IoT devices and applications." .
+
+:Device rdf:type owl:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "An IoT device that can be tested within the testbed." .
+
+:Sensor rdf:type owl:Class ;
+    rdfs:subClassOf :Device ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that collects data from the environment." .
+
+:Actuator rdf:type owl:Class ;
+    rdfs:subClassOf :Device ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A device that performs actions based on received commands." .
+
+:Experiment rdf:type owl:Class ;
+    rdfs:label "Experiment" ;
+    rdfs:comment "A specific test conducted within the testbed." .
+
+:Data rdf:type owl:Class ;
+    rdfs:label "Data" ;
+    rdfs:comment "Data collected during experiments." .
+
+# Object Properties
+:hasDevice rdf:type owl:ObjectProperty ;
+    rdfs:label "has device" ;
+    rdfs:domain :Testbed ;
+    rdfs:range :Device ;
+    rdfs:comment "Links a testbed to the devices it contains." .
+
+:conductsExperiment rdf:type owl:ObjectProperty ;
+    rdfs:label "conducts experiment" ;
+    rdfs:domain :Testbed ;
+    rdfs:range :Experiment ;
+    rdfs:comment "Links a testbed to the experiments conducted within it." .
+
+:collectsData rdf:type owl:ObjectProperty ;
+    rdfs:label "collects data" ;
+    rdfs:domain :Sensor ;
+    rdfs:range :Data ;
+    rdfs:comment "Links a sensor to the data it collects." .
+
+:controls rdf:type owl:ObjectProperty ;
+    rdfs:label "controls" ;
+    rdfs:domain :Actuator ;
+    rdfs:range :Device ;
+    rdfs:comment "Links an actuator to the device it controls." .
+
+# Data Properties
+:hasStartTime rdf:type owl:DatatypeProperty ;
+    rdfs:label "has start time" ;
+    rdfs:domain :Experiment ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The start time of the experiment." .
+
+:hasEndTime rdf:type owl:DatatypeProperty ;
+    rdfs:label "has end time" ;
+    rdfs:domain :Experiment ;
+    rdfs:range xsd:dateTime ;
+    rdfs:comment "The end time of the experiment." .
+
+:hasDataValue rdf:type owl:DatatypeProperty ;
+    rdfs:label "has data value" ;
+    rdfs:domain :Data ;
+    rdfs:range xsd:float ;
+    rdfs:comment "The value of the data collected." .
+
+# Example Instances
+:Testbed1 rdf:type :Testbed ;
+    :hasDevice :Sensor1, :Actuator1 ;
+    :conductsExperiment :Experiment1 .
+
+:Sensor1 rdf:type :Sensor ;
+    :collectsData :Data1 .
+
+:Actuator1 rdf:type :Actuator ;
+    :controls :Device1 .
+
+:Experiment1 rdf:type :Experiment ;
+    :hasStartTime "2023-10-01T10:00:00"^^xsd:dateTime ;
+    :hasEndTime "2023-10-01T12:00:00"^^xsd:dateTime .
+
+:Data1 rdf:type :Data ;
+    :hasDataValue 23.5 .
+
+:Device1 rdf:type :Device .
+
+# ```
+
+# ### Explanation:
+# 1. **Classes**: Defined classes for `Testbed`, `Device`, `Sensor`, `Actuator`, `Experiment`, and `Data`.
+# 2. **Object Properties**: Created relationships such as `hasDevice`, `conductsExperiment`, `collectsData`, and `controls` to define how these classes interact.
+# 3. **Data Properties**: Included properties like `hasStartTime`, `hasEndTime`, and `hasDataValue` to capture relevant information about experiments and data.
+# 4. **Instances**: Provided example instances to illustrate how the ontology can be used.
+
+# This ontology is designed to be extensible and can be further developed as needed while adhering to the reuse strategy.

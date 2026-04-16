@@ -1,0 +1,138 @@
+# Below is an ontology for the domain of IoT testbeds, utilizing existing ontologies such as the Fiesta-IOT Ontology. The ontology is structured in Turtle (RDF) syntax, and it incorporates classes, object properties, and data properties while ensuring a clear hierarchy and relationships.
+
+# ```turtle
+@prefix : <http://example.org/iot-testbed#> .
+@prefix fi: <http://fiesta-iot.eu/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Ontology Declaration
+<http://example.org/iot-testbed>
+    rdf:type owl:Ontology ;
+    rdfs:label "IoT Testbed Ontology" ;
+    rdfs:comment "An ontology for representing IoT testbeds, their components, and relationships." .
+
+# Classes
+:Testbed a owl:Class ;
+    rdfs:subClassOf fi:Testbed ;
+    rdfs:label "Testbed" ;
+    rdfs:comment "A physical or virtual environment for testing IoT devices and applications." .
+
+:Device a owl:Class ;
+    rdfs:subClassOf fi:Device ;
+    rdfs:label "Device" ;
+    rdfs:comment "An IoT device that can be tested within the testbed." .
+
+:Sensor a owl:Class ;
+    rdfs:subClassOf fi:Sensor ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A type of device that collects data from the environment." .
+
+:Actuator a owl:Class ;
+    rdfs:subClassOf fi:Actuator ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A type of device that performs actions based on commands." .
+
+:TestScenario a owl:Class ;
+    rdfs:subClassOf fi:TestScenario ;
+    rdfs:label "Test Scenario" ;
+    rdfs:comment "A specific scenario designed to test the behavior of devices in the testbed." .
+
+:Measurement a owl:Class ;
+    rdfs:subClassOf fi:Measurement ;
+    rdfs:label "Measurement" ;
+    rdfs:comment "Data collected from devices during testing." .
+
+# Object Properties
+:hasDevice a owl:ObjectProperty ;
+    rdfs:domain :Testbed ;
+    rdfs:range :Device ;
+    rdfs:label "has device" ;
+    rdfs:comment "Indicates that a testbed contains a specific device." .
+
+:hasSensor a owl:ObjectProperty ;
+    rdfs:domain :Device ;
+    rdfs:range :Sensor ;
+    rdfs:label "has sensor" ;
+    rdfs:comment "Indicates that a device is a sensor." .
+
+:hasActuator a owl:ObjectProperty ;
+    rdfs:domain :Device ;
+    rdfs:range :Actuator ;
+    rdfs:label "has actuator" ;
+    rdfs:comment "Indicates that a device is an actuator." .
+
+:hasTestScenario a owl:ObjectProperty ;
+    rdfs:domain :Testbed ;
+    rdfs:range :TestScenario ;
+    rdfs:label "has test scenario" ;
+    rdfs:comment "Indicates that a testbed includes a specific test scenario." .
+
+:producesMeasurement a owl:ObjectProperty ;
+    rdfs:domain :TestScenario ;
+    rdfs:range :Measurement ;
+    rdfs:label "produces measurement" ;
+    rdfs:comment "Indicates that a test scenario produces a specific measurement." .
+
+# Data Properties
+:hasName a owl:DatatypeProperty ;
+    rdfs:domain :Testbed ;
+    rdfs:range xsd:string ;
+    rdfs:label "has name" ;
+    rdfs:comment "The name of the testbed." .
+
+:hasLocation a owl:DatatypeProperty ;
+    rdfs:domain :Testbed ;
+    rdfs:range xsd:string ;
+    rdfs:label "has location" ;
+    rdfs:comment "The physical location of the testbed." .
+
+:hasTimestamp a owl:DatatypeProperty ;
+    rdfs:domain :Measurement ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "has timestamp" ;
+    rdfs:comment "The timestamp when the measurement was taken." .
+
+:hasValue a owl:DatatypeProperty ;
+    rdfs:domain :Measurement ;
+    rdfs:range xsd:float ;
+    rdfs:label "has value" ;
+    rdfs:comment "The numerical value of the measurement." .
+
+# Example Instances
+:Testbed1 a :Testbed ;
+    :hasName "Smart City Testbed" ;
+    :hasLocation "City Center" .
+
+:Device1 a :Device ;
+    :hasName "Temperature Sensor" ;
+    :hasSensor :Sensor1 ;
+    :hasActuator :Actuator1 .
+
+:Sensor1 a :Sensor ;
+    :hasName "Temperature Sensor" .
+
+:Actuator1 a :Actuator ;
+    :hasName "Cooling System" .
+
+:TestScenario1 a :TestScenario ;
+    :hasName "Temperature Control Test" ;
+    :producesMeasurement :Measurement1 .
+
+:Measurement1 a :Measurement ;
+    :hasValue 22.5 ;
+    :hasTimestamp "2023-10-01T12:00:00Z"^^xsd:dateTime .
+# ```
+
+# ### Explanation:
+# 1. **Classes**: The ontology defines several classes relevant to IoT testbeds, including `Testbed`, `Device`, `Sensor`, `Actuator`, `TestScenario`, and `Measurement`. These classes are aligned with the Fiesta-IOT ontology where applicable.
+
+# 2. **Object Properties**: Relationships between classes are defined using object properties, such as `hasDevice`, `hasSensor`, `hasActuator`, `hasTestScenario`, and `producesMeasurement`.
+
+# 3. **Data Properties**: Data properties are used to describe attributes of classes, such as `hasName`, `hasLocation`, `hasTimestamp`, and `hasValue`.
+
+# 4. **Instances**: Example instances are provided to illustrate how the classes and properties can be used in practice.
+
+# This ontology can be expanded or modified based on specific requirements or additional concepts in the IoT testbed domain.

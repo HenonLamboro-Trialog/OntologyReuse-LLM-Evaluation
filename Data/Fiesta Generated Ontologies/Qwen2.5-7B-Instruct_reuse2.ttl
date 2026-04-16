@@ -1,0 +1,142 @@
+# Certainly! Below is an ontology for the domain of IoT testbed, reusing elements from the Fiesta-IOT Ontology where appropriate. The ontology is provided in Turtle (RDF) syntax.
+
+# ```turtle
+@prefix fiesta: <http://www.example.org/fiesta-iot#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Define the namespace for the IoT testbed ontology
+fiesta:iotTestbed a owl:Ontology ;
+    rdfs:label "IoT Testbed Ontology" ;
+    rdfs:seeAlso <http://www.example.org/fiesta-iot> .
+
+# Reusing classes and properties from Fiesta-IOT Ontology
+fiesta:Device a owl:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "A physical or virtual entity that can be controlled or monitored in an IoT environment." .
+
+fiesta:Sensor a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that measures and reports environmental conditions or other data." .
+
+fiesta:Actuator a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A device that performs actions based on the data received from sensors or other sources." .
+
+fiesta:Testbed a owl:Class ;
+    rdfs:label "Testbed" ;
+    rdfs:comment "A collection of IoT devices, sensors, and actuators that are used for testing and development purposes." .
+
+fiesta:TestbedComponent a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Testbed Component" ;
+    rdfs:comment "A component within a testbed, which can be a sensor, actuator, or other device." .
+
+fiesta:TestbedConfiguration a owl:Class ;
+    rdfs:label "Testbed Configuration" ;
+    rdfs:comment "A configuration of the testbed, specifying the setup and parameters for testing." .
+
+fiesta:TestbedExperiment a owl:Class ;
+    rdfs:label "Testbed Experiment" ;
+    rdfs:comment "A planned or executed experiment using the testbed to evaluate the performance or functionality of IoT devices." .
+
+# Define object properties
+fiesta:hasComponent a owl:ObjectProperty ;
+    rdfs:label "hasComponent" ;
+    rdfs:domain fiesta:Testbed ;
+    rdfs:range fiesta:TestbedComponent .
+
+fiesta:hasConfiguration a owl:ObjectProperty ;
+    rdfs:label "hasConfiguration" ;
+    rdfs:domain fiesta:Testbed ;
+    rdfs:range fiesta:TestbedConfiguration .
+
+fiesta:hasExperiment a owl:ObjectProperty ;
+    rdfs:label "hasExperiment" ;
+    rdfs:domain fiesta:Testbed ;
+    rdfs:range fiesta:TestbedExperiment .
+
+fiesta:isControlledBy a owl:ObjectProperty ;
+    rdfs:label "isControlledBy" ;
+    rdfs:domain fiesta:Actuator ;
+    rdfs:range fiesta:Device .
+
+fiesta:measures a owl:ObjectProperty ;
+    rdfs:label "measures" ;
+    rdfs:domain fiesta:Sensor ;
+    rdfs:range fiesta:DataPoint .
+
+# Define data properties
+fiesta:hasSerialNumber a owl:DatatypeProperty ;
+    rdfs:label "hasSerialNumber" ;
+    rdfs:domain fiesta:Device ;
+    rdfs:range xsd:string .
+
+fiesta:hasLocation a owl:DatatypeProperty ;
+    rdfs:label "hasLocation" ;
+    rdfs:domain fiesta:Device ;
+    rdfs:range xsd:string .
+
+fiesta:hasManufacturer a owl:DatatypeProperty ;
+    rdfs:label "hasManufacturer" ;
+    rdfs:domain fiesta:Device ;
+    rdfs:range xsd:string .
+
+fiesta:hasModel a owl:DatatypeProperty ;
+    rdfs:label "hasModel" ;
+    rdfs:domain fiesta:Device ;
+    rdfs:range xsd:string .
+
+fiesta:hasVersion a owl:DatatypeProperty ;
+    rdfs:label "hasVersion" ;
+    rdfs:domain fiesta:Device ;
+    rdfs:range xsd:string .
+
+fiesta:hasTimestamp a owl:DatatypeProperty ;
+    rdfs:label "hasTimestamp" ;
+    rdfs:domain fiesta:DataPoint ;
+    rdfs:range xsd:dateTime .
+
+fiesta:value a owl:DatatypeProperty ;
+    rdfs:label "value" ;
+    rdfs:domain fiesta:DataPoint ;
+    rdfs:range xsd:float .
+
+# Example instances
+fiesta:Testbed1 a fiesta:Testbed ;
+    fiesta:hasComponent fiesta:Sensor1, fiesta:Actuator1 ;
+    fiesta:hasConfiguration fiesta:Config1 ;
+    fiesta:hasExperiment fiesta:Exp1 .
+
+fiesta:Sensor1 a fiesta:Sensor ;
+    fiesta:hasSerialNumber "S12345" ;
+    fiesta:hasLocation "Room A" ;
+    fiesta:hasManufacturer "XYZ Corp" ;
+    fiesta:hasModel "Model A" ;
+    fiesta:hasVersion "1.0" ;
+    fiesta:measures fiesta:DataPoint1 .
+
+fiesta:Actuator1 a fiesta:Actuator ;
+    fiesta:hasSerialNumber "A67890" ;
+    fiesta:hasLocation "Room B" ;
+    fiesta:hasManufacturer "ABC Corp" ;
+    fiesta:hasModel "Model B" ;
+    fiesta:hasVersion "2.0" ;
+    fiesta:isControlledBy fiesta:Sensor1 .
+
+fiesta:Config1 a fiesta:TestbedConfiguration ;
+    fiesta:hasTimestamp "2023-01-01T00:00:00Z" .
+
+fiesta:Exp1 a fiesta:TestbedExperiment ;
+    fiesta:hasTimestamp "2023-01-02T00:00:00Z" .
+
+fiesta:DataPoint1 a fiesta:DataPoint ;
+    fiesta:hasTimestamp "2023-01-01T12:00:00Z" ;
+    fiesta:value 23.5 .
+# ```
+
+# This ontology defines the core classes and properties for an IoT testbed, reusing elements from the Fiesta-IOT Ontology where appropriate. It includes classes for devices, sensors, actuators, testbeds, and experiments, along with properties to describe their relationships and attributes.

@@ -1,0 +1,154 @@
+# ```turtle
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix iot:    <http://purl.oclc.org/NET/UNIS/fiware/iot-lite#> .   # FIESTA-IoT ontology
+@prefix ex:     <http://example.org/iot-testbed#> .
+
+#################################################################
+# Classes
+#################################################################
+
+ex:IoTTestbed a owl:Class ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A controlled environment for testing IoT devices, applications, and services." .
+
+ex:TestbedNode a owl:Class ;
+    rdfs:subClassOf iot:Device ;
+    rdfs:label "Testbed Node" ;
+    rdfs:comment "A physical or virtual node in an IoT testbed." .
+
+ex:TestbedService a owl:Class ;
+    rdfs:subClassOf iot:Service ;
+    rdfs:label "Testbed Service" ;
+    rdfs:comment "A service provided by or within an IoT testbed." .
+
+ex:TestbedExperiment a owl:Class ;
+    rdfs:label "Testbed Experiment" ;
+    rdfs:comment "An experiment conducted using the IoT testbed." .
+
+ex:TestbedUser a owl:Class ;
+    rdfs:label "Testbed User" ;
+    rdfs:comment "A user or researcher interacting with the IoT testbed." .
+
+ex:TestbedDataset a owl:Class ;
+    rdfs:subClassOf iot:Dataset ;
+    rdfs:label "Testbed Dataset" ;
+    rdfs:comment "A dataset generated or used within the IoT testbed." .
+
+ex:TestbedLocation a owl:Class ;
+    rdfs:subClassOf iot:Location ;
+    rdfs:label "Testbed Location" ;
+    rdfs:comment "A physical or virtual location of the testbed or its components." .
+
+#################################################################
+# Object Properties
+#################################################################
+
+ex:hasNode a owl:ObjectProperty ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedNode ;
+    rdfs:label "has node" ;
+    rdfs:comment "Relates an IoT testbed to its nodes." .
+
+ex:hasService a owl:ObjectProperty ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedService ;
+    rdfs:label "has service" ;
+    rdfs:comment "Relates an IoT testbed to its services." .
+
+ex:hasExperiment a owl:ObjectProperty ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedExperiment ;
+    rdfs:label "has experiment" ;
+    rdfs:comment "Relates an IoT testbed to its experiments." .
+
+ex:hasUser a owl:ObjectProperty ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedUser ;
+    rdfs:label "has user" ;
+    rdfs:comment "Relates an IoT testbed to its users." .
+
+ex:hasDataset a owl:ObjectProperty ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedDataset ;
+    rdfs:label "has dataset" ;
+    rdfs:comment "Relates an IoT testbed to its datasets." .
+
+ex:hasLocation a owl:ObjectProperty ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedLocation ;
+    rdfs:label "has location" ;
+    rdfs:comment "Relates an IoT testbed or node to its location." .
+
+ex:executesExperiment a owl:ObjectProperty ;
+    rdfs:domain ex:TestbedUser ;
+    rdfs:range ex:TestbedExperiment ;
+    rdfs:label "executes experiment" ;
+    rdfs:comment "Relates a user to an experiment they execute." .
+
+ex:usesNode a owl:ObjectProperty ;
+    rdfs:domain ex:TestbedExperiment ;
+    rdfs:range ex:TestbedNode ;
+    rdfs:label "uses node" ;
+    rdfs:comment "Relates an experiment to the nodes it uses." .
+
+ex:producesDataset a owl:ObjectProperty ;
+    rdfs:domain ex:TestbedExperiment ;
+    rdfs:range ex:TestbedDataset ;
+    rdfs:label "produces dataset" ;
+    rdfs:comment "Relates an experiment to the dataset it produces." .
+
+#################################################################
+# Data Properties
+#################################################################
+
+ex:testbedName a owl:DatatypeProperty ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range xsd:string ;
+    rdfs:label "testbed name" .
+
+ex:nodeId a owl:DatatypeProperty ;
+    rdfs:domain ex:TestbedNode ;
+    rdfs:range xsd:string ;
+    rdfs:label "node ID" .
+
+ex:experimentId a owl:DatatypeProperty ;
+    rdfs:domain ex:TestbedExperiment ;
+    rdfs:range xsd:string ;
+    rdfs:label "experiment ID" .
+
+ex:userId a owl:DatatypeProperty ;
+    rdfs:domain ex:TestbedUser ;
+    rdfs:range xsd:string ;
+    rdfs:label "user ID" .
+
+ex:datasetId a owl:DatatypeProperty ;
+    rdfs:domain ex:TestbedDataset ;
+    rdfs:range xsd:string ;
+    rdfs:label "dataset ID" .
+
+ex:locationName a owl:DatatypeProperty ;
+    rdfs:domain ex:TestbedLocation ;
+    rdfs:range xsd:string ;
+    rdfs:label "location name" .
+
+#################################################################
+# Alignment with FIESTA-IoT Ontology
+#################################################################
+
+# ex:TestbedNode is a subclass of iot:Device
+# ex:TestbedService is a subclass of iot:Service
+# ex:TestbedDataset is a subclass of iot:Dataset
+# ex:TestbedLocation is a subclass of iot:Location
+
+#################################################################
+# End of Ontology
+#################################################################
+# ```
+# **Notes:**
+# - The ontology reuses and aligns with the [FIESTA-IoT ontology](https://purl.oclc.org/NET/UNIS/fiware/iot-lite#) for core IoT concepts.
+# - New classes and properties are introduced only where needed for the IoT testbed domain.
+# - The class hierarchy and relationships are clearly defined, and redundancy is avoided.
+# - Prefixes and comments are included for clarity.

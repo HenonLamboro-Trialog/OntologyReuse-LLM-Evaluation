@@ -1,0 +1,130 @@
+# Creating an ontology for the domain of IoT testbeds involves defining classes, properties, and relationships while reusing existing ontologies where applicable. Below is a Turtle (RDF) representation of an IoT testbed ontology that incorporates elements from the Fiesta-IoT ontology and other relevant vocabularies.
+
+# ```turtle
+@prefix : <http://example.org/iot-testbed#> .
+@prefix fi: <http://fiesta-iot.eu/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# Ontology Declaration
+<http://example.org/iot-testbed>
+    rdf:type owl:Ontology ;
+    rdfs:label "IoT Testbed Ontology" ;
+    rdfs:comment "An ontology for representing IoT testbeds, their components, and interactions." .
+
+# Classes
+:IoTTestbed rdf:type rdfs:Class ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A testbed for Internet of Things devices and applications." .
+
+:Device rdf:type rdfs:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "A physical or virtual device in the IoT testbed." .
+
+:Sensor rdf:type rdfs:Class ;
+    rdfs:subClassOf :Device ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that senses physical properties." .
+
+:Actuator rdf:type rdfs:Class ;
+    rdfs:subClassOf :Device ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A device that acts upon the environment." .
+
+:Network rdf:type rdfs:Class ;
+    rdfs:label "Network" ;
+    rdfs:comment "The communication network connecting devices in the testbed." .
+
+:Experiment rdf:type rdfs:Class ;
+    rdfs:label "Experiment" ;
+    rdfs:comment "An experiment conducted within the IoT testbed." .
+
+:Data rdf:type rdfs:Class ;
+    rdfs:label "Data" ;
+    rdfs:comment "Data generated or used by devices in the testbed." .
+
+# Object Properties
+:hasDevice rdf:type owl:ObjectProperty ;
+    rdfs:label "has device" ;
+    rdfs:domain :IoTTestbed ;
+    rdfs:range :Device ;
+    rdfs:comment "Links an IoT testbed to its devices." .
+
+:hasNetwork rdf:type owl:ObjectProperty ;
+    rdfs:label "has network" ;
+    rdfs:domain :IoTTestbed ;
+    rdfs:range :Network ;
+    rdfs:comment "Links an IoT testbed to its network." .
+
+:conductsExperiment rdf:type owl:ObjectProperty ;
+    rdfs:label "conducts experiment" ;
+    rdfs:domain :IoTTestbed ;
+    rdfs:range :Experiment ;
+    rdfs:comment "Links an IoT testbed to the experiments conducted." .
+
+:generatesData rdf:type owl:ObjectProperty ;
+    rdfs:label "generates data" ;
+    rdfs:domain :Device ;
+    rdfs:range :Data ;
+    rdfs:comment "Links a device to the data it generates." .
+
+:uses rdf:type owl:ObjectProperty ;
+    rdfs:label "uses" ;
+    rdfs:domain :Experiment ;
+    rdfs:range :Device ;
+    rdfs:comment "Links an experiment to the devices it uses." .
+
+# Data Properties
+:hasName rdf:type owl:DatatypeProperty ;
+    rdfs:label "has name" ;
+    rdfs:domain :Device ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The name of the device." .
+
+:hasType rdf:type owl:DatatypeProperty ;
+    rdfs:label "has type" ;
+    rdfs:domain :Device ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The type of the device (e.g., sensor, actuator)." .
+
+:hasValue rdf:type owl:DatatypeProperty ;
+    rdfs:label "has value" ;
+    rdfs:domain :Data ;
+    rdfs:range xsd:string ;
+    rdfs:comment "The value of the data generated." .
+
+# Example Instances
+:Testbed1 rdf:type :IoTTestbed ;
+    :hasDevice :Sensor1, :Actuator1 ;
+    :hasNetwork :Network1 ;
+    :conductsExperiment :Experiment1 .
+
+:Sensor1 rdf:type :Sensor ;
+    :hasName "Temperature Sensor" ;
+    :hasType "Temperature" .
+
+:Actuator1 rdf:type :Actuator ;
+    :hasName "Fan" ;
+    :hasType "Cooling" .
+
+:Network1 rdf:type :Network ;
+    :hasName "WiFi Network" .
+
+:Experiment1 rdf:type :Experiment ;
+    :uses :Sensor1, :Actuator1 .
+
+:Data1 rdf:type :Data ;
+    :hasValue "22.5" .
+
+# ```
+
+# ### Explanation:
+# 1. **Classes**: The ontology defines several classes relevant to IoT testbeds, including `IoTTestbed`, `Device`, `Sensor`, `Actuator`, `Network`, `Experiment`, and `Data`.
+# 2. **Object Properties**: Relationships between classes are established through object properties such as `hasDevice`, `hasNetwork`, `conductsExperiment`, `generatesData`, and `uses`.
+# 3. **Data Properties**: Attributes of devices and data are captured through data properties like `hasName`, `hasType`, and `hasValue`.
+# 4. **Instances**: Example instances illustrate how the classes and properties can be instantiated in a real-world scenario.
+
+# This ontology can be expanded further based on specific requirements or additional features of IoT testbeds.

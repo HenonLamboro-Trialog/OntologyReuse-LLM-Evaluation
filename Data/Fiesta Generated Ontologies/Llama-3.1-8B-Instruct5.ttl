@@ -1,0 +1,120 @@
+# **IoT Testbed Ontology**
+
+# **Introduction**
+
+# This ontology defines a conceptual model for the domain of IoT testbeds. It reuses existing ontologies, vocabularies, and standards to ensure consistency and interoperability. The ontology is designed to capture the key concepts and relationships involved in IoT testbeds, including devices, networks, applications, and experiments.
+
+# **Reuse Strategy**
+
+# This ontology reuses the following existing ontologies, vocabularies, and standards:
+
+# * **Fiesta-IOT Ontology**: Reused for device and network concepts.
+# * **Semantic Sensor Network (SSN) Ontology**: Reused for sensor and actuator concepts.
+# * **Web Ontology Language (OWL)**: Used for defining classes, object properties, and data properties.
+
+# **Ontology Structure**
+
+# The ontology consists of the following classes and relationships:
+
+# ```turtle
+@prefix iot: <http://example.org/iot#> .
+@prefix fiesta: <http://example.org/fiesta#> .
+@prefix ssn: <http://www.w3.org/ns/ssn#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# <!-- Classes -->
+iot:Device a owl:Class ;
+  rdfs:subClassOf fiesta:Device .
+
+iot:Network a owl:Class ;
+  rdfs:subClassOf fiesta:Network .
+
+iot:Application a owl:Class ;
+  rdfs:subClassOf owl:Thing .
+
+iot:Experiment a owl:Class ;
+  rdfs:subClassOf owl:Thing .
+
+# <!-- Object Properties -->
+iot:hasDevice a owl:ObjectProperty ;
+  rdfs:domain iot:Network ;
+  rdfs:range iot:Device .
+
+iot:hasNetwork a owl:ObjectProperty ;
+  rdfs:domain iot:Device ;
+  rdfs:range iot:Network .
+
+iot:hasApplication a owl:ObjectProperty ;
+  rdfs:domain iot:Device ;
+  rdfs:range iot:Application .
+
+iot:hasExperiment a owl:ObjectProperty ;
+  rdfs:domain iot:Device ;
+  rdfs:range iot:Experiment .
+
+# <!-- Data Properties -->
+iot:deviceID a owl:DatatypeProperty ;
+  rdfs:domain iot:Device ;
+  rdfs:range xsd:string .
+
+iot:networkID a owl:DatatypeProperty ;
+  rdfs:domain iot:Network ;
+  rdfs:range xsd:string .
+
+iot:applicationID a owl:DatatypeProperty ;
+  rdfs:domain iot:Application ;
+  rdfs:range xsd:string .
+
+iot:experimentID a owl:DatatypeProperty ;
+  rdfs:domain iot:Experiment ;
+  rdfs:range xsd:string .
+
+# <!-- Relationships -->
+iot:Device ssn:hasSensor ssn:Sensor ;
+  ssn:hasActuator ssn:Actuator .
+
+iot:Network ssn:hasNode ssn:Node ;
+  ssn:hasLink ssn:Link .
+
+iot:Application owl:uses iot:Device ;
+  owl:uses iot:Network .
+
+iot:Experiment owl:uses iot:Device ;
+  owl:uses iot:Network .
+# ```
+
+# **Explanation**
+
+# This ontology defines the following classes:
+
+# * `iot:Device`: A device in the IoT testbed, which is a subclass of `fiesta:Device`.
+# * `iot:Network`: A network in the IoT testbed, which is a subclass of `fiesta:Network`.
+# * `iot:Application`: An application in the IoT testbed, which is a subclass of `owl:Thing`.
+# * `iot:Experiment`: An experiment in the IoT testbed, which is a subclass of `owl:Thing`.
+
+# The ontology defines the following object properties:
+
+# * `iot:hasDevice`: A device is part of a network.
+# * `iot:hasNetwork`: A device is connected to a network.
+# * `iot:hasApplication`: An application uses a device.
+# * `iot:hasExperiment`: An experiment uses a device.
+
+# The ontology defines the following data properties:
+
+# * `iot:deviceID`: The ID of a device.
+# * `iot:networkID`: The ID of a network.
+# * `iot:applicationID`: The ID of an application.
+# * `iot:experimentID`: The ID of an experiment.
+
+# The ontology defines the following relationships:
+
+# * A device has a sensor and an actuator.
+# * A network has a node and a link.
+# * An application uses a device and a network.
+# * An experiment uses a device and a network.
+
+# **Conclusion**
+
+# This ontology provides a conceptual model for the domain of IoT testbeds, reusing existing ontologies, vocabularies, and standards to ensure consistency and interoperability. The ontology defines classes, object properties, and data properties to capture the key concepts and relationships involved in IoT testbeds.

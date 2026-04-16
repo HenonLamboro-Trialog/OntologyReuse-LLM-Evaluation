@@ -1,0 +1,98 @@
+# Certainly! Below is an ontology for the domain of IoT testbed, reusing existing elements from the Fiesta-IOT Ontology where appropriate. The ontology is provided in Turtle (RDF) syntax.
+
+# ```turtle
+@prefix fiesta: <http://www.example.org/fiesta-iot#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Define classes
+fiesta:IoTTestbed a owl:Class ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A physical or virtual environment for testing and validating IoT systems and components." .
+
+fiesta:Sensor a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that measures physical or environmental conditions and transmits the data." .
+
+fiesta:Actuator a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A device that performs actions based on the input data received from sensors or other sources." .
+
+fiesta:Device a owl:Class ;
+    rdfs:label "Device" ;
+    rdfs:comment "A generic class for any physical or virtual device in an IoT system." .
+
+fiesta:Gateway a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Gateway" ;
+    rdfs:comment "A device that acts as a bridge between different IoT networks or protocols." .
+
+fiesta:Network a owl:Class ;
+    rdfs:label "Network" ;
+    rdfs:comment "A collection of devices and sensors connected to each other for data exchange." .
+
+# Define object properties
+fiesta:hasDevice a owl:ObjectProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range fiesta:Device ;
+    rdfs:label "hasDevice" ;
+    rdfs:comment "Indicates that a testbed has a specific device." .
+
+fiesta:hasSensor a owl:ObjectProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range fiesta:Sensor ;
+    rdfs:label "hasSensor" ;
+    rdfs:comment "Indicates that a testbed has a specific sensor." .
+
+fiesta:hasActuator a owl:ObjectProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range fiesta:Actuator ;
+    rdfs:label "hasActuator" ;
+    rdfs:comment "Indicates that a testbed has a specific actuator." .
+
+fiesta:isConnectedTo a owl:ObjectProperty ;
+    rdfs:domain fiesta:Device ;
+    rdfs:range fiesta:Network ;
+    rdfs:label "isConnectedTo" ;
+    rdfs:comment "Indicates that a device is connected to a specific network." .
+
+# Define data properties
+fiesta:hasLocation a owl:DatatypeProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range xsd:string ;
+    rdfs:label "hasLocation" ;
+    rdfs:comment "Indicates the physical location of the testbed." .
+
+fiesta:hasStartDate a owl:DatatypeProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range xsd:date ;
+    rdfs:label "hasStartDate" ;
+    rdfs:comment "Indicates the start date of the testbed operation." .
+
+fiesta:hasEndDate a owl:DatatypeProperty ;
+    rdfs:domain fiesta:IoTTestbed ;
+    rdfs:range xsd:date ;
+    rdfs:label "hasEndDate" ;
+    rdfs:comment "Indicates the end date of the testbed operation." .
+
+# Align with existing ontology
+fiesta:IoTTestbed rdfs:subClassOf fiesta:Testbed .
+fiesta:Device rdfs:subClassOf fiesta:Entity .
+fiesta:Sensor rdfs:subClassOf fiesta:Device .
+fiesta:Actuator rdfs:subClassOf fiesta:Device .
+fiesta:Gateway rdfs:subClassOf fiesta:Device .
+fiesta:Network rdfs:subClassOf fiesta:Connection .
+fiesta:hasDevice rdfs:subPropertyOf fiesta:hasEntity .
+fiesta:hasSensor rdfs:subPropertyOf fiesta:hasDevice .
+fiesta:hasActuator rdfs:subPropertyOf fiesta:hasDevice .
+fiesta:isConnectedTo rdfs:subPropertyOf fiesta:isConnectedTo .
+fiesta:hasLocation rdfs:subPropertyOf fiesta:hasAttribute .
+fiesta:hasStartDate rdfs:subPropertyOf fiesta:hasAttribute .
+fiesta:hasEndDate rdfs:subPropertyOf fiesta:hasAttribute .
+# ```
+
+# This ontology defines the core classes and properties for an IoT testbed, aligning with the existing Fiesta-IOT Ontology where appropriate. It ensures a clear class hierarchy and well-defined relationships while avoiding redundancy.

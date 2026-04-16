@@ -1,0 +1,209 @@
+# Below is an ontology for the domain of **IoT Testbed**, reusing and aligning with the [FIESTA-IoT Ontology](https://ontology.fiesta-iot.eu/ontologyDocs/ontologyDoc.html) and relevant standards (e.g., [SSN/SOSA](https://www.w3.org/TR/vocab-ssn/)).  
+# Classes and properties from reused ontologies are prefixed accordingly (`fiesta`, `ssn`, `sosa`, `dcterms`, etc.).  
+# New terms are defined under the `iot-testbed` namespace.
+
+# ```turtle
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix fiesta: <http://ontology.fiesta-iot.eu/ontologyFiesta-IoT#> .
+@prefix ssn:    <http://www.w3.org/ns/ssn/> .
+@prefix sosa:   <http://www.w3.org/ns/sosa/> .
+@prefix iot-testbed: <http://example.org/iot-testbed#> .
+
+#################################################################
+# Classes
+#################################################################
+
+# Reuse Fiesta-IoT Testbed class
+iot-testbed:Testbed
+    a owl:Class ;
+    rdfs:subClassOf fiesta:Testbed ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A controlled environment for testing IoT devices, applications, and services." .
+
+# Reuse Fiesta-IoT Platform class
+iot-testbed:Platform
+    a owl:Class ;
+    rdfs:subClassOf fiesta:Platform ;
+    rdfs:label "Platform" ;
+    rdfs:comment "A hardware or software entity hosting IoT devices or services." .
+
+# Reuse Fiesta-IoT Device class
+iot-testbed:Device
+    a owl:Class ;
+    rdfs:subClassOf fiesta:Device ;
+    rdfs:label "Device" ;
+    rdfs:comment "A physical IoT device deployed in the testbed." .
+
+# Reuse SSN/SOSA Sensor class
+sosa:Sensor
+    a owl:Class ;
+    rdfs:label "Sensor" ;
+    rdfs:comment "A device that observes a property or phenomenon." .
+
+# Reuse SSN/SOSA Actuator class
+sosa:Actuator
+    a owl:Class ;
+    rdfs:label "Actuator" ;
+    rdfs:comment "A device that acts upon the environment." .
+
+# Reuse Fiesta-IoT Service class
+iot-testbed:Service
+    a owl:Class ;
+    rdfs:subClassOf fiesta:Service ;
+    rdfs:label "Service" ;
+    rdfs:comment "A software service provided by the testbed." .
+
+# Experiment class (new, but aligns with common IoT testbed concepts)
+iot-testbed:Experiment
+    a owl:Class ;
+    rdfs:label "Experiment" ;
+    rdfs:comment "A scientific or engineering experiment conducted on the testbed." .
+
+# User class (aligns with dcterms:Agent)
+iot-testbed:User
+    a owl:Class ;
+    rdfs:subClassOf dcterms:Agent ;
+    rdfs:label "User" ;
+    rdfs:comment "A person or organization using the testbed." .
+
+# Dataset class (reuse Fiesta-IoT Dataset)
+iot-testbed:Dataset
+    a owl:Class ;
+    rdfs:subClassOf fiesta:Dataset ;
+    rdfs:label "Dataset" ;
+    rdfs:comment "A collection of data produced by experiments or devices." .
+
+#################################################################
+# Object Properties
+#################################################################
+
+# Testbed contains Platforms
+iot-testbed:hasPlatform
+    a owl:ObjectProperty ;
+    rdfs:domain iot-testbed:Testbed ;
+    rdfs:range iot-testbed:Platform ;
+    rdfs:label "has platform" ;
+    rdfs:comment "Links a testbed to its platforms." .
+
+# Platform hosts Devices
+iot-testbed:hostsDevice
+    a owl:ObjectProperty ;
+    rdfs:domain iot-testbed:Platform ;
+    rdfs:range iot-testbed:Device ;
+    rdfs:label "hosts device" ;
+    rdfs:comment "Links a platform to devices it hosts." .
+
+# Device implements Sensor or Actuator (reuse sosa:hosts)
+iot-testbed:hasComponent
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf ssn:hasSubSystem ;
+    rdfs:domain iot-testbed:Device ;
+    rdfs:range [ a owl:Class ; owl:unionOf (sosa:Sensor sosa:Actuator) ] ;
+    rdfs:label "has component" ;
+    rdfs:comment "Links a device to its sensor or actuator components." .
+
+# Testbed offers Service
+iot-testbed:offersService
+    a owl:ObjectProperty ;
+    rdfs:domain iot-testbed:Testbed ;
+    rdfs:range iot-testbed:Service ;
+    rdfs:label "offers service" ;
+    rdfs:comment "Links a testbed to the services it offers." .
+
+# Experiment uses Device
+iot-testbed:usesDevice
+    a owl:ObjectProperty ;
+    rdfs:domain iot-testbed:Experiment ;
+    rdfs:range iot-testbed:Device ;
+    rdfs:label "uses device" ;
+    rdfs:comment "Links an experiment to the devices it uses." .
+
+# Experiment conductedBy User
+iot-testbed:conductedBy
+    a owl:ObjectProperty ;
+    rdfs:domain iot-testbed:Experiment ;
+    rdfs:range iot-testbed:User ;
+    rdfs:label "conducted by" ;
+    rdfs:comment "Links an experiment to the user who conducted it." .
+
+# Experiment generates Dataset
+iot-testbed:generatesDataset
+    a owl:ObjectProperty ;
+    rdfs:domain iot-testbed:Experiment ;
+    rdfs:range iot-testbed:Dataset ;
+    rdfs:label "generates dataset" ;
+    rdfs:comment "Links an experiment to the dataset it produces." .
+
+# Device produces Dataset
+iot-testbed:producesDataset
+    a owl:ObjectProperty ;
+    rdfs:domain iot-testbed:Device ;
+    rdfs:range iot-testbed:Dataset ;
+    rdfs:label "produces dataset" ;
+    rdfs:comment "Links a device to the dataset it produces." .
+
+#################################################################
+# Data Properties
+#################################################################
+
+# Testbed name
+iot-testbed:testbedName
+    a owl:DatatypeProperty ;
+    rdfs:domain iot-testbed:Testbed ;
+    rdfs:range xsd:string ;
+    rdfs:label "testbed name" .
+
+# Device identifier
+iot-testbed:deviceId
+    a owl:DatatypeProperty ;
+    rdfs:domain iot-testbed:Device ;
+    rdfs:range xsd:string ;
+    rdfs:label "device identifier" .
+
+# Experiment start time
+iot-testbed:startTime
+    a owl:DatatypeProperty ;
+    rdfs:domain iot-testbed:Experiment ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "start time" .
+
+# Experiment end time
+iot-testbed:endTime
+    a owl:DatatypeProperty ;
+    rdfs:domain iot-testbed:Experiment ;
+    rdfs:range xsd:dateTime ;
+    rdfs:label "end time" .
+
+# Dataset size
+iot-testbed:datasetSize
+    a owl:DatatypeProperty ;
+    rdfs:domain iot-testbed:Dataset ;
+    rdfs:range xsd:integer ;
+    rdfs:label "dataset size" ;
+    rdfs:comment "Number of records in the dataset." .
+
+#################################################################
+# Alignment with Reused Ontologies
+#################################################################
+
+# Fiesta-IoT alignment examples
+iot-testbed:Testbed owl:equivalentClass fiesta:Testbed .
+iot-testbed:Platform owl:equivalentClass fiesta:Platform .
+iot-testbed:Device owl:equivalentClass fiesta:Device .
+iot-testbed:Service owl:equivalentClass fiesta:Service .
+iot-testbed:Dataset owl:equivalentClass fiesta:Dataset .
+
+# User aligns with dcterms:Agent
+iot-testbed:User owl:equivalentClass dcterms:Agent .
+
+# ```
+
+# **Notes:**
+# - Classes and properties from FIESTA-IoT and SSN/SOSA are reused and mapped where possible.
+# - New classes and properties are only introduced where necessary for the IoT Testbed domain.
+# - The ontology is modular and extensible for further IoT testbed-specific concepts.
+# - All reused terms are clearly aligned or mapped using `owl:equivalentClass` or `rdfs:subClassOf`.

@@ -1,0 +1,178 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix iot:    <http://purl.oclc.org/NET/UNIS/fiware/iot-lite#> .
+@prefix sosa:   <http://www.w3.org/ns/sosa/> .
+@prefix ssn:    <http://www.w3.org/ns/ssn/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix ex:     <http://example.org/iot-testbed#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+#################################################################
+# Classes
+#################################################################
+
+ex:IoTTestbed a owl:Class ;
+    rdfs:label "IoT Testbed" ;
+    rdfs:comment "A controlled environment for testing IoT devices, applications, and services." .
+
+ex:TestbedNode a owl:Class ;
+    rdfs:label "Testbed Node" ;
+    rdfs:subClassOf iot:Device ;
+    rdfs:comment "A physical or virtual node within an IoT testbed." .
+
+ex:TestbedService a owl:Class ;
+    rdfs:label "Testbed Service" ;
+    rdfs:subClassOf iot:Service ;
+    rdfs:comment "A service provided by or within an IoT testbed." .
+
+ex:TestScenario a owl:Class ;
+    rdfs:label "Test Scenario" ;
+    rdfs:comment "A scenario or experiment executed within an IoT testbed." .
+
+ex:TestbedUser a owl:Class ;
+    rdfs:label "Testbed User" ;
+    rdfs:subClassOf foaf:Agent ;
+    rdfs:comment "A user or agent interacting with the IoT testbed." .
+
+ex:TestbedLocation a owl:Class ;
+    rdfs:label "Testbed Location" ;
+    rdfs:subClassOf sosa:Platform ;
+    rdfs:comment "A physical or virtual location associated with the testbed." .
+
+ex:TestbedDataset a owl:Class ;
+    rdfs:label "Testbed Dataset" ;
+    rdfs:subClassOf dct:Dataset ;
+    rdfs:comment "A dataset generated or used in the IoT testbed." .
+
+#################################################################
+# Object Properties
+#################################################################
+
+ex:hasNode a owl:ObjectProperty ;
+    rdfs:label "has node" ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedNode ;
+    rdfs:subPropertyOf iot:hosts ;
+    rdfs:comment "Relates a testbed to its nodes." .
+
+ex:hasService a owl:ObjectProperty ;
+    rdfs:label "has service" ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedService ;
+    rdfs:subPropertyOf iot:exposesService ;
+    rdfs:comment "Relates a testbed to its services." .
+
+ex:hasScenario a owl:ObjectProperty ;
+    rdfs:label "has scenario" ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestScenario ;
+    rdfs:comment "Relates a testbed to its test scenarios." .
+
+ex:hasUser a owl:ObjectProperty ;
+    rdfs:label "has user" ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedUser ;
+    rdfs:comment "Relates a testbed to its users." .
+
+ex:hasLocation a owl:ObjectProperty ;
+    rdfs:label "has location" ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedLocation ;
+    rdfs:subPropertyOf sosa:hasLocation ;
+    rdfs:comment "Relates a testbed to its location." .
+
+ex:hasDataset a owl:ObjectProperty ;
+    rdfs:label "has dataset" ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range ex:TestbedDataset ;
+    rdfs:subPropertyOf dct:hasPart ;
+    rdfs:comment "Relates a testbed to its datasets." .
+
+ex:executesScenario a owl:ObjectProperty ;
+    rdfs:label "executes scenario" ;
+    rdfs:domain ex:TestbedUser ;
+    rdfs:range ex:TestScenario ;
+    rdfs:comment "Relates a user to a scenario they execute." .
+
+ex:generatesDataset a owl:ObjectProperty ;
+    rdfs:label "generates dataset" ;
+    rdfs:domain ex:TestScenario ;
+    rdfs:range ex:TestbedDataset ;
+    rdfs:comment "Relates a scenario to the dataset it generates." .
+
+ex:usesNode a owl:ObjectProperty ;
+    rdfs:label "uses node" ;
+    rdfs:domain ex:TestScenario ;
+    rdfs:range ex:TestbedNode ;
+    rdfs:comment "Relates a scenario to the nodes it uses." .
+
+#################################################################
+# Data Properties
+#################################################################
+
+ex:testbedName a owl:DatatypeProperty ;
+    rdfs:label "testbed name" ;
+    rdfs:domain ex:IoTTestbed ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf dct:title ;
+    rdfs:comment "The name of the IoT testbed." .
+
+ex:nodeID a owl:DatatypeProperty ;
+    rdfs:label "node ID" ;
+    rdfs:domain ex:TestbedNode ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf iot:deviceID ;
+    rdfs:comment "An identifier for the testbed node." .
+
+ex:serviceName a owl:DatatypeProperty ;
+    rdfs:label "service name" ;
+    rdfs:domain ex:TestbedService ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf dct:title ;
+    rdfs:comment "The name of the testbed service." .
+
+ex:scenarioDescription a owl:DatatypeProperty ;
+    rdfs:label "scenario description" ;
+    rdfs:domain ex:TestScenario ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf dct:description ;
+    rdfs:comment "A description of the test scenario." .
+
+ex:userName a owl:DatatypeProperty ;
+    rdfs:label "user name" ;
+    rdfs:domain ex:TestbedUser ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf foaf:name ;
+    rdfs:comment "The name of the testbed user." .
+
+ex:locationName a owl:DatatypeProperty ;
+    rdfs:label "location name" ;
+    rdfs:domain ex:TestbedLocation ;
+    rdfs:range xsd:string ;
+    rdfs:subPropertyOf dct:title ;
+    rdfs:comment "The name of the testbed location." .
+
+ex:datasetURI a owl:DatatypeProperty ;
+    rdfs:label "dataset URI" ;
+    rdfs:domain ex:TestbedDataset ;
+    rdfs:range xsd:anyURI ;
+    rdfs:subPropertyOf dct:identifier ;
+    rdfs:comment "A URI identifying the dataset." .
+
+################################################################
+# Alignment with Existing Ontologies
+################################################################
+
+# iot:Device, iot:Service, iot:hosts, iot:exposesService, iot:deviceID from IoT-Lite (Fiesta-IoT)
+# sosa:Platform, sosa:hasLocation from SOSA/SSN
+# dct:Dataset, dct:title, dct:description, dct:identifier, dct:hasPart from Dublin Core
+# foaf:Agent, foaf:name from FOAF
+
+# ```
+# **Notes:**
+# - This ontology reuses and aligns with [Fiesta-IoT Ontology (IoT-Lite)](https://purl.oclc.org/NET/UNIS/fiware/iot-lite#), [SOSA/SSN](https://www.w3.org/ns/sosa/), [Dublin Core](http://purl.org/dc/terms/), and [FOAF](http://xmlns.com/foaf/0.1/).
+# - Subclassing and subproperty relationships are used to ensure semantic alignment and avoid redundancy.
+# - All classes, object properties, and data properties are clearly defined and mapped where appropriate.
+# - Replace `ex:` with your own namespace as needed.

@@ -1,0 +1,150 @@
+# **IoT Testbed Ontology**
+
+# **Reused Ontologies and Vocabularies**
+
+# * Fiesta-IOT Ontology (http://fiesta-iot.org/ontology#)
+# * Semantic Sensor Network Ontology (SSN) (http://www.w3.org/ns/ssn#)
+# * IoT-Lite Ontology (http://iot-lite.org/ontology#)
+
+# **Class Hierarchy**
+
+# ```turtle
+@prefix iota: <http://iot-testbed.org/ontology#> .
+@prefix iot: <http://example.org/iot#> .
+
+@prefix fiesta: <http://fiesta-iot.org/ontology#> .
+@prefix ssn: <http://www.w3.org/ns/ssn#> .
+@prefix iotlite: <http://iot-lite.org/ontology#> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+iota:Testbed a iot:Thing ;
+  rdfs:label "IoT Testbed" ;
+  rdfs:comment "A testbed for IoT devices and applications" .
+
+iota:Device a iot:Thing ;
+  rdfs:label "IoT Device" ;
+  rdfs:comment "A device connected to the IoT testbed" ;
+  ssn:hasPlatform iot:Platform ;
+  iotlite:hasSensor iot:Sensor ;
+  iotlite:hasActuator iot:Actuator .
+
+iota:Platform a iot:Thing ;
+  rdfs:label "IoT Platform" ;
+  rdfs:comment "A platform for IoT devices and applications" ;
+  ssn:hasSensor iot:Sensor ;
+  ssn:hasActuator iot:Actuator .
+
+iota:Sensor a iot:Thing ;
+  rdfs:label "IoT Sensor" ;
+  rdfs:comment "A sensor connected to the IoT testbed" ;
+  ssn:observes iot:Observation ;
+  iotlite:hasMeasurementUnit iot:Unit .
+
+iota:Actuator a iot:Thing ;
+  rdfs:label "IoT Actuator" ;
+  rdfs:comment "An actuator connected to the IoT testbed" ;
+  ssn:controls iot:Action ;
+  iotlite:hasControlRange iot:Range .
+
+iota:Observation a ssn:Observation ;
+  rdfs:label "IoT Observation" ;
+  rdfs:comment "An observation made by an IoT sensor" ;
+  ssn:hasResult iot:Result ;
+  ssn:hasSensor iot:Sensor .
+
+iota:Action a ssn:Action ;
+  rdfs:label "IoT Action" ;
+  rdfs:comment "An action performed by an IoT actuator" ;
+  ssn:hasControl iot:Control ;
+  ssn:hasActuator iot:Actuator .
+
+iota:Result a ssn:Result ;
+  rdfs:label "IoT Result" ;
+  rdfs:comment "A result of an IoT observation or action" ;
+  ssn:hasValue iot:Value ;
+  ssn:hasUnit iot:Unit .
+
+iota:Value a iot:Thing ;
+  rdfs:label "IoT Value" ;
+  rdfs:comment "A value associated with an IoT result" ;
+  iotlite:hasUnit iot:Unit .
+
+iota:Unit a iot:Thing ;
+  rdfs:label "IoT Unit" ;
+  rdfs:comment "A unit of measurement for an IoT value" ;
+  iotlite:hasSymbol iot:Symbol .
+# ```
+
+# **Object Properties**
+
+# ```turtle
+iota:hasDevice a owl:ObjectProperty ;
+  rdfs:label "has device" ;
+  rdfs:comment "A device connected to the IoT testbed" ;
+  rdfs:domain iot:Testbed ;
+  rdfs:range iot:Device .
+
+iota:hasPlatform a owl:ObjectProperty ;
+  rdfs:label "has platform" ;
+  rdfs:comment "A platform for IoT devices and applications" ;
+  rdfs:domain iot:Device ;
+  rdfs:range iot:Platform .
+
+iota:hasSensor a owl:ObjectProperty ;
+  rdfs:label "has sensor" ;
+  rdfs:comment "A sensor connected to the IoT testbed" ;
+  rdfs:domain iot:Platform ;
+  rdfs:range iot:Sensor .
+
+iota:hasActuator a owl:ObjectProperty ;
+  rdfs:label "has actuator" ;
+  rdfs:comment "An actuator connected to the IoT testbed" ;
+  rdfs:domain iot:Platform ;
+  rdfs:range iot:Actuator .
+
+iota:observes a owl:ObjectProperty ;
+  rdfs:label "observes" ;
+  rdfs:comment "An observation made by an IoT sensor" ;
+  rdfs:domain iot:Sensor ;
+  rdfs:range iot:Observation .
+
+iota:controls a owl:ObjectProperty ;
+  rdfs:label "controls" ;
+  rdfs:comment "An action performed by an IoT actuator" ;
+  rdfs:domain iot:Actuator ;
+  rdfs:range iot:Action .
+# ```
+
+# **Data Properties**
+
+# ```turtle
+iota:hasName a owl:DatatypeProperty ;
+  rdfs:label "has name" ;
+  rdfs:comment "The name of an IoT device, platform, sensor, or actuator" ;
+  rdfs:domain iot:Device ;
+  rdfs:range xsd:string .
+
+iota:hasDescription a owl:DatatypeProperty ;
+  rdfs:label "has description" ;
+  rdfs:comment "A description of an IoT device, platform, sensor, or actuator" ;
+  rdfs:domain iot:Device ;
+  rdfs:range xsd:string .
+
+iota:hasMeasurementUnit a owl:DatatypeProperty ;
+  rdfs:label "has measurement unit" ;
+  rdfs:comment "The unit of measurement for an IoT sensor" ;
+  rdfs:domain iot:Sensor ;
+  rdfs:range iot:Unit .
+
+iota:hasControlRange a owl:DatatypeProperty ;
+  rdfs:label "has control range" ;
+  rdfs:comment "The range of control for an IoT actuator" ;
+  rdfs:domain iot:Actuator ;
+  rdfs:range iot:Range .
+# ```
+
+# This ontology defines the main classes and properties for an IoT testbed, including devices, platforms, sensors, and actuators. It also includes object and data properties to describe the relationships between these entities and their attributes. The ontology is aligned with existing ontologies and vocabularies, such as Fiesta-IOT, SSN, and IoT-Lite, to ensure consistency and reusability.
