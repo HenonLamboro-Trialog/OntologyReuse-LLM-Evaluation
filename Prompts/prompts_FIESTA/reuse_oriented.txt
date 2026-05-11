@@ -1,3 +1,13 @@
-Generate an ontology ttl file for the Generate an ontology for the IoT testbed domain in Turtle syntax.
-Reuse class and property labels from the Fiesta-IoT ontology wherever possible. Prefer identical labels over creating new ones, but you may create new terms if necessary. Include all relevant relationships between Testbeds, Devices, Sensors, Applications, and Observations. 
-Prefer identical labels over inventing new ones. Clearly indicate where Fiesta-IoT ontology labels are reused.
+Generate an ontology for the domain of <IoT testbed domain>.
+Reuse Strategy:
+- Reuse existing ontologies, vocabularies, or standards whenever appropriate
+(e.g., <FIESTA-IOT ONTOLOGY>)
+- Prefer reusing existing classes and properties over creating new ones
+- Clearly align or map reused elements where applicable
+Modelling Requirements:
+- Define classes, object properties, and data properties
+- Ensure a clear class hierarchy and well-defined relationships
+- Avoid redundancy and unnecessary duplication of concepts
+Output format:
+- Provide the ontology in Turtle (RDF) syntax
+- Ensure correctness and consistency of reused terms
