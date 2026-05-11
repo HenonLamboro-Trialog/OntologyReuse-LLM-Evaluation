@@ -1,3 +1,13 @@
-Generate an ontology ttl file for the smart-appliances in the energy domain. 
-When possible, reuse labels and terminology from the SAREF ontology, especially for well-established appliance or energy-related concepts. 
-Prefer identical labels over inventing new ones. Clearly indicate where SAREF labels are reused.
+Generate an ontology for the domain of <smart-appliances in the energy domain>.
+Reuse Strategy:
+- Reuse existing ontologies, vocabularies, or standards whenever appropriate
+(e.g., <SAREF ONTOLOGY>)
+- Prefer reusing existing classes and properties over creating new ones
+- Clearly align or map reused elements where applicable
+Modelling Requirements:
+- Define classes, object properties, and data properties
+- Ensure a clear class hierarchy and well-defined relationships
+- Avoid redundancy and unnecessary duplication of concepts
+Output format:
+- Provide the ontology in Turtle (RDF) syntax
+- Ensure correctness and consistency of reused terms
